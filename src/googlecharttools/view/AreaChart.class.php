@@ -20,7 +20,7 @@
  * @author Patrick Strobel
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
- * @version 0.1.0
+ * @version $Id$
  * @package view
  */
 
