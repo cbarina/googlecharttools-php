@@ -32,7 +32,7 @@ namespace googlecharttools\model;
  * For each column that will be used in the data of the DataTable, a column-definiton
  * has to be added to the DataTable.
  *
- * Please visit Google's API documentation on
+ * Please visit Google's API documentation at
  * {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
  * for detailed background information.
  *

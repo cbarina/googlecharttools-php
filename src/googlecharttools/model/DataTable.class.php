@@ -80,7 +80,7 @@ namespace googlecharttools\model;
  * </code>
  *
  * You will find detailed information on how many columns are supported by a specific
- * chart, their purpose etc. in detail on the corresponding chart's subpage
+ * chart, their purpose etc. in detail at the corresponding chart's subpage
  * published on {@link https://google-developers.appspot.com/chart/interactive/docs/gallery}.
  *
  * @package model

@@ -34,6 +34,8 @@ use googlecharttools\model\Row;
 use googlecharttools\view\AreaChart;
 use googlecharttools\view\LineChart;
 use googlecharttools\view\ChartManager;
+use googlecharttools\view\options\BackgroundColor;
+use googlecharttools\view\options\ChartArea;
 
 error_reporting(E_ALL);
 require_once("./googlecharttools/ClassLoader.class.php");
@@ -71,12 +73,14 @@ $row2007->addCell(new Cell(540));
 $companyData->addRow($row2007);
 
 $manager = new ChartManager();
-$areaChart = new AreaChart("companyArea");
-$areaChart->setData($companyData);
+$areaChart = new AreaChart("companyArea", $companyData, "Company Performance");
 $manager->addChart($areaChart);
 
-$lineChart = new LineChart("companyLine");
-$lineChart->setData($companyData);
+$backgroundColor = new BackgroundColor("#666", 10, "lightgrey");
+$chartArea = new ChartArea(10);
+$lineChart = new LineChart("companyLine", $companyData, "Company Performance");
+$lineChart->setBackgroundColor($backgroundColor);
+$lineChart->setChartArea($chartArea);
 $manager->addChart($lineChart);
 
 ?>

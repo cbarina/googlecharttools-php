@@ -27,14 +27,17 @@
 namespace googlecharttools\view;
 
 use googlecharttools\model\DataTable;
-use googlecharttools\exception\CodeGenerationException;
+use googlecharttools\exceptions\CodeGenerationException;
+use googlecharttools\view\options\BackgroundColor;
+use googlecharttools\view\options\ChartArea;
+use googlecharttools\view\options\OptionStorage;
 
 /**
  * Abstract base class for all charts supported by the Google Chart Tools.
  *
  * @package view
  */
-abstract class Chart {
+abstract class Chart extends OptionStorage{
 
     /** @var string */
     private $id;
@@ -42,23 +45,14 @@ abstract class Chart {
     /** @var DataTable */
     private $data;
 
-    /** @var string */
-    private $title;
-
-    /** @var int */
-    private $width;
-
-    /** @var int */
-    private $height;
-
-    /** @var string */
-    private $additionalOptions;
-
     /**
      * Creates a new chart.
+     *
      * @param string $id
      *              The chart's ID. As this will be used as part of the chart reference
      *              names in the generated JavaScript code, the IDs have to be unique.
+     * @param DataTable $data
+     *              The data that will be visualized through this chart
      * @param string $title
      *              The chart's title
      * @param int $width
@@ -66,8 +60,9 @@ abstract class Chart {
      * @param int $height
      *              The chart's height (in pixel)
      */
-    public function __construct($id, $title = null, $width = 700, $height = 300) {
+    public function __construct($id, DataTable $data = null, $title = null, $width = 700, $height = 300) {
         $this->id = $id;
+        $this->data = $data;
         $this->setTitle($title);
         $this->setWidth($width);
         $this->setHeight($height);
@@ -85,6 +80,7 @@ abstract class Chart {
 
     /**
      * Sets the chart's data.
+     *
      * The data will be used by the API to draw the chart.
      *
      * @param DataTable $data
@@ -95,25 +91,48 @@ abstract class Chart {
     }
 
     /**
-     * Sets the chart's title.
-     * The title will be displayed in above the graph.
+     * Sets the chart's background color and border.
      *
-     * @param string $title
-     *              The chart's title
+     * @param BackgroundColor $background
+     *              Background color and border. If set to <code>null</code>, the default
+     *              background color and border will be used.
      */
-    public function setTitle($title) {
-        $this->title = $title;
+    public function setBackgroundColor(BackgroundColor $background) {
+        $this->setOption("backgroundColor", $background);
     }
 
     /**
-     * Sets the chart's width used when the chart is displayed
+     * Sets the chart's position and size relative to it's border
+     * @param ChartArea $area
+     *          Position and size. If set to <code>null</code>, the default
+     *              position and size will be used.
+     */
+    public function setChartArea(ChartArea $area) {
+        $this->setOption("chartArea", $area);
+    }
+
+    /**
+     * Sets the chart's title.
+     *
+     * The title will be displayed above the graph.
+     *
+     * @param string $title
+     *              The chart's title. If set to <code>null</code>, the title will
+     *              be removed
+     */
+    public function setTitle($title) {
+        $this->setOption("title", $title);
+    }
+
+    /**
+     * Sets the chart's width used when the chart is displayed.
      *
      * @param int $width
      *              Positive humber that represents the chart's width in pixel
      */
     public function setWidth($width) {
         if (is_numeric($width) && $width > 0) {
-            $this->width = $width;
+            $this->setOption("width", $width);
         }
     }
 
@@ -125,38 +144,8 @@ abstract class Chart {
      */
     public function setHeight($height) {
         if (is_numeric($height) && $height > 0) {
-            $this->height = $height;
+            $this->setOption("height", $height);
         }
-    }
-
-    /**
-     * Sets additional options that are currently not supported by the set-methods.
-     *
-     * Through this method, additional option-code can be added to the generated
-     * JavaScript-code. This is usefull, when options should be set that are
-     * currently not directly supported by this API (through set...() methods).
-     *
-     * The options have to have be in the format
-     * <pre>
-     * option1: value,
-     * option2: value,
-     * ...
-     * </pre>
-     *
-     * <b>Example:</b>
-     * <code>
-     * animation:{
-     *   duration: 1000,
-     *   easing: 'out',
-     *  },
-     * vAxis: {minValue:0, maxValue:1000}
-     * </code>
-     *
-     * @param string $options
-     *              Additional options
-     */
-    public function setAdditionalOptions($options) {
-        $this->additionalOptions = $options;
     }
 
     /**
@@ -192,36 +181,12 @@ abstract class Chart {
                 " */\n" .
                 "function " . $this->id . "ChartPrepare() {\n" .
                 "  " . $this->id . "Data = new google.visualization.DataTable(" . $this->data->toJsonObject() . ");\n" .
-                "  " . $this->id . "Options = " . $this->getJsonOptions() . ";\n" .
+                "  " . $this->id . "Options = " . $this->encodeOptions() . ";\n" .
                 "  " . $this->id . "Chart = new google.visualization." .
                 $classname . "(document.getElementById(\"" . $this->id . "\"));\n" .
                 "}";
 
 
-        return $code;
-    }
-
-    /**
-     * Genertes the options-JSON-string that will be iserted inside the JS preparation function.
-     *
-     * @return string
-     *              The generated code
-     */
-    private function getJsonOptions() {
-        $code = "{\n";
-        if ($this->title != null) {
-            $code .= "  \"title\": \"" . $this->title . "\,\n";
-        }
-
-        $code .= "    \"width\": " . $this->width . ",\n" .
-                "    \"height\": " . $this->height . "";
-
-        if ($this->additionalOptions != null && strlen($this->additionalOptions) > 0) {
-            $code .= ",\n" .
-                     "    " . $this->additionalOptions;
-        }
-
-        $code .= "}";
         return $code;
     }
 
@@ -232,7 +197,8 @@ abstract class Chart {
      *              The HTML container
      */
     public function getHtmlContainer() {
-        return "<div id=\"" . $this->id . "\" style=\"width:" . $this->width . "px; height:" . $this->height . "px;\"></div>\n";
+        return "<div id=\"" . $this->id . "\" style=\"width:" . $this->getOption("width") .
+                "px; height:" . $this->getOption("height") . "px;\"></div>\n";
     }
 
 }
