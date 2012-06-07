@@ -21,7 +21,7 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
  * @version $Id$
- * @package exception
+ * @package exceptions
  */
 
 namespace googlecharttools\exceptions;
@@ -30,7 +30,7 @@ namespace googlecharttools\exceptions;
  * A CodeGenerationException will be thrown whenever the generation of JavaScript
  * code failes.
  *
- * @package exception
+ * @package exceptions
  */
 class CodeGenerationException extends \Exception {}
 ?>
