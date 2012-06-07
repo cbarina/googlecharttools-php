@@ -37,13 +37,21 @@ namespace googlecharttools\view\options;
 class ChartArea extends OptionStorage {
 
     /**
-     * Creates a new ChartArea option-set
+     * Creates a new ChartArea option-set.
      *
-     * @param string $left
-     *              The chart's distance from it's left border
-     * @param type $top
-     * @param type $width
-     * @param type $height
+     * An integer or a string that contains a number followed by a percent sign
+     * can be assigned to each argument. An integer or a number-only string is
+     * interpreted as pixel value, a number followed by a percent sign as
+     * percentage value.
+     *
+     * @param mixed $left
+     *              The chart's distance from its left border.
+     * @param mixed $top
+     *              The chart's distance from its upper border.
+     * @param mixed $width
+     *              The chart's width.
+     * @param mixed $height
+     *              The chart's height.
      */
     public function __construct($left = null, $top = null, $width = null, $height = null) {
         $this->setOption("left", $left);
@@ -52,16 +60,45 @@ class ChartArea extends OptionStorage {
         $this->setOption("height", $height);
     }
 
+    /**
+     * Sets the chart's position.
+     *
+     * An integer or a string that contains a number followed by a percent sign
+     * can be assigned to the arguments. An integer or a number-only string is
+     * interpreted as pixel value, a number followed by a percent sign as
+     * percentage value.
+     *
+     * @param mixed $left
+     *              The chart's distance from its left border. If set to null,
+     *              the default distance will be used.
+     * @param mixed $top
+     *              The chart's distance from its upper border. If set to null,
+     *              the default distance will be used.
+     */
     public function setPosition($left = null, $top = null) {
         $this->setOption("left", $left);
         $this->setOption("top", $top);
     }
 
+    /**
+     * Sets the chart's size.
+     *
+     * An integer or a string that contains a number followed by a percent sign
+     * can be assigned to the arguments. An integer or a number-only string is
+     * interpreted as pixel value, a number followed by a percent sign as
+     * percentage value.
+     *
+     * @param mixed $width
+     *              The chart's width. If set to null, the default width will be
+     *              used.
+     * @param mixed $height
+     *              The chart's height. If set to null, the default width will be
+     *              used.
+     */
     public function setSize($width = null, $height = null) {
         $this->setOption("width", $width);
         $this->setOption("height", $height);
     }
-
 
     public function getJsonOptions() {
         return "backgroundColor: " . $this->encodeOptions();

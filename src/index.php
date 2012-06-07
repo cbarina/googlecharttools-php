@@ -36,6 +36,9 @@ use googlecharttools\view\LineChart;
 use googlecharttools\view\ChartManager;
 use googlecharttools\view\options\BackgroundColor;
 use googlecharttools\view\options\ChartArea;
+use googlecharttools\view\options\Legend;
+use googlecharttools\view\options\TextStyle;
+use googlecharttools\view\options\Tooltip;
 
 error_reporting(E_ALL);
 require_once("./googlecharttools/ClassLoader.class.php");
@@ -73,15 +76,24 @@ $row2007->addCell(new Cell(540));
 $companyData->addRow($row2007);
 
 $manager = new ChartManager();
+
+// Default charts
 $areaChart = new AreaChart("companyArea", $companyData, "Company Performance");
 $manager->addChart($areaChart);
 
+// Customized chart
 $backgroundColor = new BackgroundColor("#666", 10, "lightgrey");
-$chartArea = new ChartArea(10);
-$lineChart = new LineChart("companyLine", $companyData, "Company Performance");
-$lineChart->setBackgroundColor($backgroundColor);
-$lineChart->setChartArea($chartArea);
-$manager->addChart($lineChart);
+$legend = new Legend(Legend::POSITION_IN, new TextStyle("blue", "arial", 12));
+$tooltip = new Tooltip(true, null, new TextStyle("red", "verdana", 12));
+$customizedLineChart = new LineChart("companyLine", $companyData, "Company Performance");
+$customizedLineChart->setBackgroundColor($backgroundColor);
+$customizedLineChart->setFontSize(10);
+$customizedLineChart->setFontName("Times new roman");
+$customizedLineChart->setColors(array("yellow", "green"));
+$customizedLineChart->setLegend($legend);
+$customizedLineChart->setReverseCategories(true);
+$customizedLineChart->setTooltip($tooltip);
+$manager->addChart($customizedLineChart);
 
 ?>
 <html>
@@ -94,7 +106,7 @@ $manager->addChart($lineChart);
         <h2>Area chart</h2>
 <?php echo $areaChart->getHtmlContainer(); ?>
 
-        <h2>Line chart</h2>
-<?php echo $lineChart->getHtmlContainer(); ?>
+        <h2>Customized line chart</h2>
+<?php echo $customizedLineChart->getHtmlContainer(); ?>
     </body>
 </html>

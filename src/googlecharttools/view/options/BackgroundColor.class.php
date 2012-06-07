@@ -60,8 +60,7 @@ class BackgroundColor extends OptionStorage {
      * Any valid HTML/CSS color definition can be used (e. g. "white", #FFF, #123456).
      *
      * @param string $color
-     *              HTML color string. If set to <code>null</code>, the default
-     *              width will be used.
+     *              HTML color string. If set to null, the default color will be used.
      */
     public function setStroke($color) {
         $this->setOption("stroke", $color);
@@ -71,8 +70,7 @@ class BackgroundColor extends OptionStorage {
      * Sets the width of the chart's border.
      *
      * @param int $width
-     *              Border-width in pixel. If set to <code>null</code>, the default
-     *              width will be used.
+     *              Border-width in pixel. If set to null, the default width will be used.
      */
     public function setStrokeWidth($width) {
         $this->setOption("strokeWidth", $width);
@@ -81,14 +79,14 @@ class BackgroundColor extends OptionStorage {
     /**
      * Sets the chart's background color.
      *
+     * Any valid HTML/CSS color definition can be used (e. g. "white", #FFF, #123456).
+     *
      * @param type $color
-     *              HTML color string. If set to <code>null</code>, the default
-     *              width will be used.
+     *              HTML color string. If set to null, the default width will be used.
      */
     public function setFill($color) {
         $this->setOption("fill", $color);
     }
-
 
     public function getJsonOptions() {
         return "backgroundColor: " . $this->encodeOptions();

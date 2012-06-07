@@ -30,14 +30,17 @@ use googlecharttools\model\DataTable;
 use googlecharttools\exceptions\CodeGenerationException;
 use googlecharttools\view\options\BackgroundColor;
 use googlecharttools\view\options\ChartArea;
+use googlecharttools\view\options\Legend;
 use googlecharttools\view\options\OptionStorage;
+use googlecharttools\view\options\TextStyle;
+use googlecharttools\view\options\Tooltip;
 
 /**
  * Abstract base class for all charts supported by the Google Chart Tools.
  *
  * @package view
  */
-abstract class Chart extends OptionStorage{
+abstract class Chart extends OptionStorage {
 
     /** @var string */
     private $id;
@@ -94,7 +97,7 @@ abstract class Chart extends OptionStorage{
      * Sets the chart's background color and border.
      *
      * @param BackgroundColor $background
-     *              Background color and border. If set to <code>null</code>, the default
+     *              Background color and border. If set to null, the default
      *              background color and border will be used.
      */
     public function setBackgroundColor(BackgroundColor $background) {
@@ -102,13 +105,76 @@ abstract class Chart extends OptionStorage{
     }
 
     /**
+     * Sets the chart element's color.
+     *
+     * These colors will be assigned to the chart's elements
+     *
+     * @param string[] $colors
+     *              An array where each value represents a color for a
+     *              specific element of the chart. Any valid HTML/CSS color
+     *              definition can be used (e. g. "white", #FFF, #123456).
+     *              If set to null, the default colors will be used.
+     */
+    public function setColors($colors) {
+        $this->setOptionArray("colors", $colors);
+    }
+
+    /**
      * Sets the chart's position and size relative to it's border
+     *
      * @param ChartArea $area
-     *          Position and size. If set to <code>null</code>, the default
+     *              Position and size. If set to null, the default
      *              position and size will be used.
      */
     public function setChartArea(ChartArea $area) {
         $this->setOption("chartArea", $area);
+    }
+
+    /**
+     * Sets the font size.
+     *
+     * This font size will be used for all text-elements in the chart, as long
+     * as no other size has been set for the sub text-element.
+     *
+     * @param int $size
+     *              Font size in pixels. If set to null, the default size will be used
+     */
+    public function setFontSize($size) {
+        $this->setOptionNumeric("fontSize", $size);
+    }
+
+    /**
+     * Sets the font name.
+     *
+     * This font will be used as for all text-elements in the chart, as long
+     * as no other font name has been set for the sub text-element
+     *
+     * @param string $name
+     *              Font name. If set to null, the default font will be used.
+     */
+    public function setFontName($name) {
+        $this->setOption("fontName", $name);
+    }
+
+    /**
+     * Sets the legends position and text style.
+     *
+     * @param Legend $legend
+     *              Position and text style. If set to null, the default position
+     *              and text style will be used.
+     */
+    public function setLegend(Legend $legend) {
+        $this->setOption("legend", $legend);
+    }
+
+    /**
+     * Sets the direction, in which the data will be read.
+     *
+     * @param boolean $reverse
+     *              If set to true, the data will be read in reverse.
+     */
+    public function setReverseCategories($reverse) {
+        $this->setOptionBoolean("reverseCategories", $reverse);
     }
 
     /**
@@ -117,11 +183,33 @@ abstract class Chart extends OptionStorage{
      * The title will be displayed above the graph.
      *
      * @param string $title
-     *              The chart's title. If set to <code>null</code>, the title will
+     *              The chart's title. If set to null, the title will
      *              be removed
      */
     public function setTitle($title) {
         $this->setOption("title", $title);
+    }
+
+    /**
+     * Sets the chart title's text style.
+     *
+     * @param TextStyle $textStyle
+     *              The text style. If set to null, the default text style will
+     *              be used.
+     */
+    public function setTitleTextStyle(TextStyle $textStyle) {
+        $this->setOption("titleTextStyle", $textStyle);
+    }
+
+    /**
+     * Sets the behaviour and style of the chart's tooltip.
+     *
+     * @param Tooltip $tooltip
+     *              The tooltip behaviour and style. If set to null, the default
+     *              behaviour and style will be used.
+     */
+    public function setTooltip(Tooltip $tooltip) {
+        $this->setOption("tooltip", $tooltip);
     }
 
     /**

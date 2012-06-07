@@ -24,9 +24,17 @@
  * @package view
  * @subpackage options
  */
+
 namespace googlecharttools\view\options;
 
+/**
+ * Abstract base class for all charts and option-sets that store information.
+ *
+ * @package view
+ * @subpackage options
+ */
 abstract class OptionStorage {
+
     /** @var mixed[] */
     private $options = array();
 
@@ -45,9 +53,9 @@ abstract class OptionStorage {
             return null;
         }
     }
+
     /**
-     * Sets an option to a given value or removes the option from the option-array,
-     * if value is <code>null</code>
+     * Sets an option to a given value.
      *
      * This allows to set additional options that are currently not supported by the set-methods.
      * Howevever, you should always use on of the other set-methods if possible.
@@ -59,14 +67,68 @@ abstract class OptionStorage {
      * @param string $name
      *                  The option's name
      * @param string $value
-     *                  The option's value. If set to <code>null</code>, the option
-     *                  will be removed from the array
+     *                  The option's value. If set to null, the option
+     *                  will be removed
      */
     public function setOption($name, $value) {
-        if ($value != null) {
+        if ($value !== null) {
             $this->options[$name] = $value;
         } else {
             unset($this->options[$name]);
+        }
+    }
+
+    /**
+     * Sets an option to a given value.
+     *
+     * This has the same semantic as {@link setOption()}.
+     * However, only boolean values are accepted.
+     *
+     * @param string $name
+     *                  The option's name
+     * @param boolean $value
+     *                  The option's value. If set to null, the option
+     *                  will be removed
+     */
+    public function setOptionBoolean($name, $value) {
+        if (is_bool($value) || $value == null) {
+            $this->setOption($name, $value);
+        }
+    }
+
+    /**
+     * Sets an option to a given value.
+     *
+     * This has the same semantic as {@link setOption()}.
+     * However, only numeric values are accepted.
+     *
+     * @param string $name
+     *                  The option's name
+     * @param number $value
+     *                  The option's value. If set to null, the option
+     *                  will be removed
+     */
+    public function setOptionNumeric($name, $value) {
+        if (is_numeric($value) || $value == null) {
+            $this->setOption($name, $value);
+        }
+    }
+
+    /**
+     * Sets an option to a given value.
+     *
+     * This has the same semantic as {@link setOption()}.
+     * However, only array values are accepted.
+     *
+     * @param string $name
+     *                  The option's name
+     * @param string[] $value
+     *                  The option's value. If set to null, the option
+     *                  will be removed
+     */
+    public function setOptionArray($name, $value) {
+        if (is_array($value) || $value == null) {
+            $this->setOption($name, $value);
         }
     }
 
@@ -89,6 +151,10 @@ abstract class OptionStorage {
 
             if ($value instanceof OptionStorage) {
                 $encoded .= $name . ": " . $value->encodeOptions();
+            } else if (is_array($value)) {
+                $encoded .= $name . ": " . json_encode($value);
+            } else if (is_bool ($value)) {
+                $encoded .= $name . ": " . ($value ? "true" : "false");
             } else {
                 $encoded .= $name . ": \"" . $value . "\"";
             }
