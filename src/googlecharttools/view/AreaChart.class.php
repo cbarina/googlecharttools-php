@@ -41,7 +41,20 @@ use googlecharttools\view\Chart;
  *
  * @package view
  */
-class AreaChart extends Chart {
+class AreaChart extends CartesianChart {
+
+    /**
+     * Sets the colored area's opacity.
+     *
+     * This value will be used for all data sets.
+     *
+     * @param float $opacity
+     *                  The areas opacity. 0.0 means fully transparent, 1.0
+     *                  fully opaque
+     */
+    public function setAreaOpacity($opacity) {
+        $this->setOptionNumeric("areaOpacity", $opacity);
+    }
 
 }
 

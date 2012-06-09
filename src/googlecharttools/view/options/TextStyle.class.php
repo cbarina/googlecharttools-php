@@ -85,11 +85,6 @@ class TextStyle extends OptionStorage {
         $this->setOption("fontSize", $size);
     }
 
-
-    public function getJsonOptions() {
-        return "backgroundColor: " . $this->encodeOptions();
-    }
-
 }
 
 ?>

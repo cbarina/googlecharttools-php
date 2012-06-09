@@ -100,10 +100,6 @@ class ChartArea extends OptionStorage {
         $this->setOption("height", $height);
     }
 
-    public function getJsonOptions() {
-        return "backgroundColor: " . $this->encodeOptions();
-    }
-
 }
 
 ?>

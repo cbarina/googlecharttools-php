@@ -43,4 +43,5 @@ use googlecharttools\view\Chart;
 class PieChart extends Chart {
 
 }
+
 ?>

@@ -22,7 +22,6 @@
  * @link http://code.google.com/p/googlecharttools-php
  * @version $Id$
  * @package view
- * @subpackage options
  */
 
 namespace googlecharttools\view\options;
@@ -31,7 +30,6 @@ namespace googlecharttools\view\options;
  * Abstract base class for all charts and option-sets that store information.
  *
  * @package view
- * @subpackage options
  */
 abstract class OptionStorage {
 
@@ -153,7 +151,7 @@ abstract class OptionStorage {
                 $encoded .= $name . ": " . $value->encodeOptions();
             } else if (is_array($value)) {
                 $encoded .= $name . ": " . json_encode($value);
-            } else if (is_bool ($value)) {
+            } else if (is_bool($value)) {
                 $encoded .= $name . ": " . ($value ? "true" : "false");
             } else {
                 $encoded .= $name . ": \"" . $value . "\"";

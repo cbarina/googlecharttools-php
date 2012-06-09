@@ -41,7 +41,7 @@ use googlecharttools\view\Chart;
  *
  * @package view
  */
-class LineChart extends Chart {
+class LineChart extends CartesianChart {
 
 }
 

@@ -136,10 +136,6 @@ class Tooltip extends OptionStorage {
         $this->setOption("trigger", $trigger);
     }
 
-    public function getJsonOptions() {
-        return "backgroundColor: " . $this->encodeOptions();
-    }
-
 }
 
 ?>

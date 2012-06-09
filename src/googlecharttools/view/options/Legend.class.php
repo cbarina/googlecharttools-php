@@ -34,10 +34,10 @@ namespace googlecharttools\view\options;
  * @subpackage options
  */
 class Legend extends OptionStorage {
-
     /**
      * Legend will be displayed on the right of the chart.
      */
+
     const POSITION_RIGHT = "right";
 
     /**
@@ -104,11 +104,6 @@ class Legend extends OptionStorage {
      */
     public function setTextStyle(TextStyle $textStyle) {
         $this->setOption("textStyle", $textStyle);
-    }
-
-
-    public function getJsonOptions() {
-        return "backgroundColor: " . $this->encodeOptions();
     }
 
 }
