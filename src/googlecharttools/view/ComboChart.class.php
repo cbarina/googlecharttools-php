@@ -27,33 +27,41 @@
 namespace googlecharttools\view;
 
 /**
- * Creates an area chart.
+ * Creates a combo chart.
  *
  * <b>Data format:</b><br />
- * The area chart requires a {@link DataTable} with at least two columns.
+ * The combo chart requires a {@link DataTable} with at least two columns.
  * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one line.
+ * follows will be seen as Y-values for one bar.
  *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart}
+ * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/combochart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
-class AreaChart extends CartesianChart {
+
+class ComboChart extends CartesianChart {
+
+    const SERIES_AREA = "area";
+    const SERIES_BARS = "bars";
+    const SERIES_LINE = "line";
 
     /**
-     * Sets the colored area's opacity.
+     * Sets the default series' type.
      *
-     * This value will be used for all data sets.
-     *
-     * @param float $opacity
-     *                  The areas opacity. 0.0 means fully transparent, 1.0
-     *                  fully opaque
+     * @param string $type
+     *              The series marker's type. Must be on of the <i>SERIES_...</i>
+     *              constants. If set to null, the default type will be used.
+     * @throws \InvalidArgumentException
+     *              Thrown, if the given type is invalid. That is, if a value
+     *              other than one of the constants is used.
      */
-    public function setAreaOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
-            $this->setOptionNumeric("areaOpacity", $opacity);
+    public function setSeriesType($type) {
+        if ($type != self::SERIES_AREA && $type != self::SERIES_BARS &&
+                $type != self::SERIES_LINE && $type != null) {
+            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
         }
+        $this->setOptions("seriesType", $type);
     }
 
 }

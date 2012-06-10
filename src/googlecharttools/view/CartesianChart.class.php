@@ -65,6 +65,27 @@ abstract class CartesianChart extends Chart {
     const FOCUS_CATEGORY = "category";
 
     /**
+     * The chart's area is maximizes and all labels inside the chart and the legend
+     * is drawn.
+     */
+    const THEME_MAXIMIZED = "maximized";
+
+    /**
+     * The title is drawn inside the chart's area.
+     */
+    const TITLE_IN = "in";
+
+    /**
+     * The title is not drawn.
+     */
+    const TITLE_NONE = "none";
+
+    /**
+     * The title is drawn outside the chart's area.
+     */
+    const TITLE_OUT = "out";
+
+    /**
      * Sets the animation that will be used when the data is drawn or redrawn.
      *
      * @param Animation $animation
@@ -134,7 +155,86 @@ abstract class CartesianChart extends Chart {
         $this->setOption("hAxis", $axis);
     }
 
-    // TODO: Implement remaining options.
+    /**
+     * Sets if the elements should be stacked.
+     *
+     * @param boolean $stacked
+     *              If set to true, elements of the same type are stacked.
+     *              If set to false or null, the elements are not stacked.
+     */
+    public function setIsStacked($stacked) {
+        $this->setOptionBoolean("isStacked", $stacked);
+    }
+
+    /**
+     * Sets the data line's width.
+     *
+     * @param int $width
+     *              The data line's width in pixels. Must be greater or equal than "0".
+     *              When set to "0", the lines will be invisible and only the
+     *              data point will be displayed.
+     *              If set to null, the default width (2 pixels) will be used.
+     */
+    public function setLineWidth($width) {
+        if ($width >= 0) {
+            $this->setOptionNumeric("lineWidth", $width);
+        }
+    }
+
+    /**
+     * Sets the data point's size.
+     *
+     * @param int $size
+     *              The data point's size in pixel. Must be greater or equal than "0".
+     *              When set to "0", the data points will be invisible.
+     *              If set to null, the data points won't be displayed.
+     */
+    public function setPointSize($size) {
+        if ($size >= 0) {
+            $this->setOptionNumeric("pointSize", $size);
+        }
+    }
+
+    /**
+     * Sets the format of the chart's series.
+     *
+     * @param Series[] $series
+     *              An array where each element defines a single series.
+     *              Either the array's entries are added in the same order
+     *              as the chart's lines (the {@link Row}) or the corresponding
+     *              line is set as the array's key (a numeric string).
+     */
+    public function setSeries($series) {
+        if (is_array($series)) {
+            $this->setOption("series", $series);
+        }
+    }
+
+    /**
+     * Sets the chart's theme.
+     *
+     * A theme is a set of predefined options.
+     *
+     * @param string $theme
+     *              The theme. Must be on of the <i>THEME_...</i> constants.
+     * @throws \InvalidArgumentException
+     *              Thrown, if the given theme is invalid. That is, if a value
+     *              other than one of the constants is used.
+     */
+    public function setTheme($theme) {
+        if ($theme != self::THEME_MAXIMIZED && $theme != null) {
+            throw new \InvalidArgumentException("Parameter \"theme\" is invalid");
+        }
+        $this->setOption("theme", $theme);
+    }
+
+    public function setTitlePosition($position) {
+        if ($position != self::TITLE_IN && $position != self::TITLE_NONE &&
+                $position != self::TITLE_OUT && $position != null) {
+            throw new \InvalidArgumentException("Parameter \"position\" is invalid");
+        }
+        $this->setOption("titlePosition", $position);
+    }
 
     /**
      * Sets the appearance of the vertical axis.

@@ -26,8 +26,6 @@
 
 namespace googlecharttools\view;
 
-use googlecharttools\view\Chart;
-
 /**
  * Creates a pie chart.
  *

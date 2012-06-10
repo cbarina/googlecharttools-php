@@ -132,7 +132,6 @@ class Tooltip extends OptionStorage {
                 $trigger != null) {
             throw new \InvalidArgumentException("Parameter \"trigger\" is invalid");
         }
-        echo "set";
         $this->setOption("trigger", $trigger);
     }
 
