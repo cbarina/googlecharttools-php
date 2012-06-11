@@ -1,0 +1,69 @@
+<?php
+
+/*
+ * Copyright 2012 Patrick Strobel.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * you may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+/**
+ * @author Patrick Strobel
+ * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
+ * @link http://code.google.com/p/googlecharttools-php
+ * @version $Id$
+ * @package view
+ */
+
+namespace googlecharttools\view;
+
+use googlecharttools\view\options\Animation;
+
+/**
+ * A ContinuousChart is used as base for all charts whose x-axis represents continues values.
+ *
+ * @package view
+ */
+abstract class ContinuousChart extends CartesianChart {
+
+    /**
+     * Sets the data line's width.
+     *
+     * @param int $width
+     *              The data line's width in pixels. Must be greater or equal than "0".
+     *              When set to "0", the lines will be invisible and only the
+     *              data point will be displayed.
+     *              If set to null, the default width (2 pixels) will be used.
+     */
+    public function setLineWidth($width) {
+        if ($width >= 0) {
+            $this->setOptionNumeric("lineWidth", $width);
+        }
+    }
+
+    /**
+     * Sets the data point's size.
+     *
+     * @param int $size
+     *              The data point's size in pixel. Must be greater or equal than "0".
+     *              When set to "0", the data points will be invisible.
+     *              If set to null, the data points won't be displayed.
+     */
+    public function setPointSize($size) {
+        if ($size >= 0) {
+            $this->setOptionNumeric("pointSize", $size);
+        }
+    }
+
+}
+
+?>

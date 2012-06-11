@@ -27,45 +27,19 @@
 namespace googlecharttools\view;
 
 /**
- * Creates an area chart.
+ * Creates a bar chart.
  *
  * <b>Data format:</b><br />
- * The area chart requires a {@link DataTable} with at least two columns.
+ * The bar chart requires a {@link DataTable} with at least two columns.
  * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one line.
+ * follows will be seen as Y-values for one bar.
  *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart}
+ * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/barchart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
-class AreaChart extends LineChart {
-
-    /**
-     * Sets the colored area's opacity.
-     *
-     * This value will be used for all data sets.
-     *
-     * @param float $opacity
-     *                  The areas opacity. 0.0 means fully transparent, 1.0
-     *                  fully opaque
-     */
-    public function setAreaOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
-            $this->setOptionNumeric("areaOpacity", $opacity);
-        }
-    }
-
-    /**
-     * Sets if the elements should be stacked.
-     *
-     * @param boolean $stacked
-     *              If set to true, elements of the same type are stacked.
-     *              If set to false or null, the elements are not stacked.
-     */
-    public function setIsStacked($stacked) {
-        $this->setOptionBoolean("isStacked", $stacked);
-    }
+class BarChart extends ColumnChart {
 
 }
 

@@ -21,29 +21,29 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
  * @version $Id$
- * @package default
+ * @package view
  */
 
 namespace googlecharttools\view;
 
 /**
- * Creates a line chart.
+ * Creates a column chart.
  *
  * <b>Data format:</b><br />
- * The line chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one line.
+ * The column chart requires a {@link DataTable} with at least two columns.
+ * The first column is used for the x-axis labels and values. Each column that
+ * follows will be seen as y-values for one column.
  *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart}
+ * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/columnchart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
-class LineChart extends ContinuousChart {
+class ColumnChart extends CartesianChart {
+
     /**
      * Focus is given to a single data point (On cell in the {@link DataTable}).
      */
-
     const FOCUS_DATUM = "datum";
 
     /**
@@ -69,6 +69,17 @@ class LineChart extends ContinuousChart {
             throw new \InvalidArgumentException("Parameter \"target\" is invalid");
         }
         $this->setOption("focusTarget", $target);
+    }
+
+    /**
+     * Sets if the elements should be stacked.
+     *
+     * @param boolean $stacked
+     *              If set to true, elements of the same type are stacked.
+     *              If set to false or null, the elements are not stacked.
+     */
+    public function setIsStacked($stacked) {
+        $this->setOptionBoolean("isStacked", $stacked);
     }
 
 }

@@ -106,6 +106,23 @@ class Legend extends OptionStorage {
         $this->setOption("textStyle", $textStyle);
     }
 
+    /**
+     * Sets the format used when numeric labels are displayed.
+     *
+     * This is ignored by some charts.
+     *
+     * For the format string, a subset of the
+     * {@link http://icu-project.org/apiref/icu4c/classDecimalFormat.html#_details ICU pattern set}
+     * is used.
+     *
+     * @param string $format
+     *              The format string. Has to follow the ICU pattern.
+     *              If set to null, the default format will be used.
+     */
+    public function setNumberFormat($format) {
+        $this->setOption("numberFormat", $format);
+    }
+
 }
 
 ?>
