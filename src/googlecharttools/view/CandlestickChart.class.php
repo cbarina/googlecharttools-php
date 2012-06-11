@@ -27,33 +27,24 @@
 namespace googlecharttools\view;
 
 /**
- * Creates a bar chart.
+ * Creates a candlestick chart.
  *
  * <b>Data format:</b><br />
- * The bar chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one bar.
+ * The candlestick chart requires a {@link DataTable} with at least five columns.
+ * The first column is used for the x-axis labels and values. The second and fith
+ * column are used for the minimim and maximum value (vertical lines), respectively.
+ * The marker's range is defined by the third and fourth column. The sixth column
+ * is optional and will be used for the tooltip-text.
  *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/barchart}
+ * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/candlestickchart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
-class BarChart extends DiscreteChart {
+class CandlestickChart extends DiscreteChart {
 
     /**
-     * Sets if the elements should be stacked.
-     *
-     * @param boolean $stacked
-     *              If set to true, elements of the same type are stacked.
-     *              If set to false or null, the elements are not stacked.
-     */
-    public function setIsStacked($stacked) {
-        $this->setOptionBoolean("isStacked", $stacked);
-    }
-
-    /**
-     * Sets the properties of more than one horzontal axis.
+     * Sets the properties of more than one vertical axis.
      *
      * The specified array index must be mapped to the same number as set
      * via {@link Series::setTargetAxisIndex()}.
@@ -61,8 +52,8 @@ class BarChart extends DiscreteChart {
      * @param Axis[] $axes
      *              A property for each axis.
      */
-    public function setHAxes($axes) {
-        $this->setOptionArray("hAxes", $axes);
+    public function setVAxes($axes) {
+        $this->setOptionArray("vAxes", $axes);
     }
 
 }

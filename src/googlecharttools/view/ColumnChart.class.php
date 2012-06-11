@@ -39,37 +39,7 @@ namespace googlecharttools\view;
  *
  * @package view
  */
-class ColumnChart extends CartesianChart {
-
-    /**
-     * Focus is given to a single data point (On cell in the {@link DataTable}).
-     */
-    const FOCUS_DATUM = "datum";
-
-    /**
-     * Focus is given to all data point that belong to the same x-value
-     * (On row in the {@link DataTable}).
-     */
-    const FOCUS_CATEGORY = "category";
-
-    /**
-     * Sets which elements will recevie the focus on mouse hover and on mouse click.
-     *
-     * @param string $target
-     *              The element that will receive the focus. Must be on of the
-     *              <i>FOCUS_...</i> constants or null. If set null, the
-     *              focus will be on one single data point.
-     * @throws \InvalidArgumentException
-     *              Thrown, if the given focus is invalid. That is, if a value
-     *              other than one of the constants is used.
-     */
-    public function setFocusTarget($target) {
-        if ($target != self::FOCUS_CATEGORY && $target != self::FOCUS_DATUM &&
-                $target != null) {
-            throw new \InvalidArgumentException("Parameter \"target\" is invalid");
-        }
-        $this->setOption("focusTarget", $target);
-    }
+class ColumnChart extends DiscreteChart {
 
     /**
      * Sets if the elements should be stacked.
@@ -80,6 +50,19 @@ class ColumnChart extends CartesianChart {
      */
     public function setIsStacked($stacked) {
         $this->setOptionBoolean("isStacked", $stacked);
+    }
+
+    /**
+     * Sets the properties of more than one vertical axis.
+     *
+     * The specified array index must be mapped to the same number as set
+     * via {@link Series::setTargetAxisIndex()}.
+     *
+     * @param Axis[] $axes
+     *              A property for each axis.
+     */
+    public function setVAxes($axes) {
+        $this->setOptionArray("vAxes", $axes);
     }
 
 }

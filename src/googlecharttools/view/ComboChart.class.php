@@ -31,20 +31,50 @@ namespace googlecharttools\view;
  *
  * <b>Data format:</b><br />
  * The combo chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one bar.
+ * The first column is used for the x-axis labels and values. Each column that
+ * follows will be seen as y-values for one bar.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/combochart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
+class ComboChart extends AreaChart {
 
-class ComboChart extends CartesianChart {
-
+    const CURVE_NONE = "none";
+    const CURVE_FUNCTION = "function";
     const SERIES_AREA = "area";
     const SERIES_BARS = "bars";
     const SERIES_LINE = "line";
+
+    /**
+     * Sets the chart's curve type.
+     *
+     * @param string $type
+     *              The series' curve type. Must be one of the <i>CURVE_...</i>
+     *              constants. If set to null, the default type will be used.
+     * @throws \InvalidArgumentException
+     *              Thrown, if the given type is invalid. That is, if a value
+     *              other than one of the constants is used.
+     */
+    public function setCurveType($type) {
+        if ($type != self::CURVE_FUNCTION && $type != self::CURVE_NONE &&
+                $type != null) {
+            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+        }
+        $this->setOption("curveType", $type);
+    }
+
+    /**
+     * Sets if missing values should be interpolated.
+     *
+     * @param boolean $interpolate
+     *              If set to true, values are interpolated.
+     *              If set to false or null, no interpolation is done.
+     */
+    public function setInterpolateNulls($interpolate) {
+        $this->setOptionBoolean("interpolateNulls", $interpolate);
+    }
 
     /**
      * Sets the default series' type.
@@ -62,6 +92,19 @@ class ComboChart extends CartesianChart {
             throw new \InvalidArgumentException("Parameter \"type\" is invalid");
         }
         $this->setOptions("seriesType", $type);
+    }
+
+    /**
+     * Sets the properties of more than one vertical axis.
+     *
+     * The specified array index must be mapped to the same number as set
+     * via {@link Series::setTargetAxisIndex()}.
+     *
+     * @param Axis[] $axes
+     *              A property for each axis.
+     */
+    public function setVAxes($axes) {
+        $this->setOptionArray("vAxes", $axes);
     }
 
 }

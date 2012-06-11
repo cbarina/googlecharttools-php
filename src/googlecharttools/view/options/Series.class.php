@@ -170,7 +170,6 @@ class Series extends OptionStorage {
     }
 
     /**
-     *
      * Sets the series' curve type.
      *
      * @param string $type

@@ -21,26 +21,20 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
  * @version $Id$
- * @package default
+ * @package view
  */
 
 namespace googlecharttools\view;
 
+use googlecharttools\view\options\Animation;
+
 /**
- * Creates a line chart.
- *
- * <b>Data format:</b><br />
- * The line chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one line.
- *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart}
- * for examples and detailed background information on the required data format.
+ * A DiscreteChart is used as base for all charts whose x-axis represents discrete values.
  *
  * @package view
  */
-class LineChart extends ContinuousChart {
-
+abstract class DiscreteChart extends CartesianChart {
+    
     /**
      * Focus is given to a single data point (On cell in the {@link DataTable}).
      */
@@ -70,20 +64,5 @@ class LineChart extends ContinuousChart {
         }
         $this->setOption("focusTarget", $target);
     }
-    
-    /**
-     * Sets the properties of more than one vertical axis.
-     *
-     * The specified array index must be mapped to the same number as set
-     * via {@link Series::setTargetAxisIndex()}.
-     *
-     * @param Axis[] $axes
-     *              A property for each axis.
-     */
-    public function setVAxes($axes) {
-        $this->setOptionArray("vAxes", $axes);
-    }
-
 }
-
 ?>
