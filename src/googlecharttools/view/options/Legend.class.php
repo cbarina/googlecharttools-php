@@ -82,7 +82,7 @@ class Legend extends OptionStorage {
      *
      * @param string $position
      *              The legend's position. Must be one of the <i>POSITION_...</i>
-     *              constants.
+     *              constants or null.
      * @throws \InvalidArgumentException
      *              Thrown, if the given position is invalid. That is, if a value
      *              other than one of the constants is used.

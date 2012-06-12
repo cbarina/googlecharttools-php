@@ -75,32 +75,41 @@ class ChartManager {
      *              least one chart
      */
     public function getJavaScriptCode() {
-        $code = "google.load(\"visualization\", \"1\", {packages:[\"corechart\"]});\n" .
-                "google.setOnLoadCallback(chartsOnLoad);\n\n";
-
-        // On load callback function
-        $code .= "/**\n" .
-                " * Callback function used to prepare and automatically draw the charts\n" .
-                " */\n" .
-                "function chartsOnLoad() {\n";
+        $packages = array();
+        $chartsOnLoadCode = "";
+        $chartsPrepareCode = "";
 
         foreach ($this->charts as $chart) {
+
+            // Build package array
+            $quotedPackage = "\"" . $chart->getPackage() . "\"";
+            if (!in_array($quotedPackage, $packages)) {
+                $packages[] = $quotedPackage;
+            }
+
+            // Code for the chartsOnLoad() function
             $id = $chart->getId();
-            // Prepare
-            $code .= "  " . $id . "ChartPrepare();\n";
+            $chartsOnLoadCode .= "  " . $id . "ChartPrepare();\n";
+            $chartsOnLoadCode .= "  " . $id . "Chart.draw(" . $id . "Data, " . $id . "Options);\n";
 
-            // Draw
-            $code .= "  " . $id . "Chart.draw(" . $id . "Data, " . $id . "Options);\n";
+            // Code for the chart's preparation function
+            // -----------------------------------------
+            $chartsPrepareCode .= $chart->getJavaScriptCode() . "\n\n";
+
         }
 
-        $code .= "}\n\n" .
-                "// Chart preparation code\n" .
-                "// ----------------------\n\n";
-        foreach ($this->charts as $chart) {
-            $code .= $chart->getJavaScriptCode() . "\n\n";
-        }
-
-        return $code;
+        // Build code
+        return "google.load(\"visualization\", \"1\", {packages:[" . implode(",", $packages) . "]});\n" .
+               "google.setOnLoadCallback(chartsOnLoad);\n\n" .
+               "/**\n" .
+               " * Callback function used to prepare and automatically draw the charts\n" .
+               " */\n" .
+               "function chartsOnLoad() {\n" .
+               $chartsOnLoadCode .
+               "}\n\n" .
+               "// Chart preparation code\n" .
+               "// ----------------------\n\n" .
+               $chartsPrepareCode;
     }
 
     /**

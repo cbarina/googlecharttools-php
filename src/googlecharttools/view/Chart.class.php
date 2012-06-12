@@ -73,6 +73,8 @@ abstract class Chart extends OptionStorage {
         return $this->id;
     }
 
+    public abstract function getPackage();
+
     /**
      * Sets the chart's data.
      *

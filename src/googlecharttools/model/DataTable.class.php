@@ -192,7 +192,7 @@ class DataTable {
             } else {
                 $json .= ",\n";
             }
-            $json .= "    " . $col->toJsonstring();
+            $json .= "    " . $col->toJsonString();
         }
         $json .= "],\n";
 
@@ -206,7 +206,7 @@ class DataTable {
             } else {
                 $json .= ",\n";
             }
-            $json .= "    " . $row->toJsonstring($this->cols);
+            $json .= "    " . $row->toJsonString($this->cols);
         }
         $json .= "]\n";
         $json .= "}";

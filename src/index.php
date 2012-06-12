@@ -41,6 +41,7 @@ use googlecharttools\view\LineChart;
 use googlecharttools\view\PieChart;
 use googlecharttools\view\ScatterChart;
 use googlecharttools\view\SteppedAreaChart;
+use googlecharttools\view\Table;
 use googlecharttools\view\ChartManager;
 use googlecharttools\view\options\Axis;
 use googlecharttools\view\options\BackgroundColor;
@@ -373,6 +374,37 @@ $rowHawes->addCell(new Cell(4.4));
 $rowHawes->addCell(new Cell(6.2));
 $ratingData->addRow($rowHawes);
 
+// Used for table
+$employeeData = new DataTable();
+$employeeData->addColumn(new Column(Column::TYPE_STRING, "n", "Name"));
+$employeeData->addColumn(new Column(Column::TYPE_NUMBER, "s", "Salary"));
+$employeeData->addColumn(new Column(Column::TYPE_BOOLEAN, "e", "Full Time Employee"));
+
+$rowMike = new Row();
+$rowMike->addCell(new Cell("Mike"));
+$rowMike->addCell(new Cell(10000, "$10,000"));
+$rowMike->addCell(new Cell(true));
+$employeeData->addRow($rowMike);
+
+$rowJim = new Row();
+$rowJim->addCell(new Cell("Jim"));
+$rowJim->addCell(new Cell(8000, "$8,000"));
+$rowJim->addCell(new Cell(false));
+$employeeData->addRow($rowJim);
+
+$rowAlice = new Row();
+$rowAlice->addCell(new Cell("Alice"));
+$rowAlice->addCell(new Cell(12500, "$12,500"));
+$rowAlice->addCell(new Cell(true));
+$employeeData->addRow($rowAlice);
+
+$rowBob = new Row();
+$rowBob->addCell(new Cell("Bob"));
+$rowBob->addCell(new Cell(7000, "$7,000"));
+$rowBob->addCell(new Cell(true));
+$employeeData->addRow($rowBob);
+
+
 // Prepare charts
 // --------------
 $manager = new ChartManager();
@@ -425,6 +457,9 @@ $steppedAreaChart->setTitle("The decline of 'The 39 Steps'");
 $steppedAreaChart->setVAxis(new Axis("Accumulated Rating"));
 $steppedAreaChart->setIsStacked(true);
 
+$table = new Table("employeeTable", $employeeData);
+$table->setShowRowNumber(true);
+
 $manager->addChart($areaChart);
 $manager->addChart($barChart);
 $manager->addChart($bubbleChart);
@@ -435,6 +470,7 @@ $manager->addChart($lineChart);
 $manager->addChart($pieChart);
 $manager->addChart($scatterChart);
 $manager->addChart($steppedAreaChart);
+$manager->addChart($table);
 
 // Customized chart
 $backgroundColor = new BackgroundColor("#666", 10, "lightgrey");
@@ -458,7 +494,7 @@ $manager->addChart($customizedLineChart);
 <?php echo $manager->getHtmlHeaderCode(); ?>
     </head>
     <body>
-        <h1>Chart examples</h1>
+        <h1>Corechart examples</h1>
         <h2>Area chart</h2>
 <?php echo $areaChart->getHtmlContainer(); ?>
 
@@ -489,7 +525,11 @@ $manager->addChart($customizedLineChart);
         <h2>Stepped area chart</h2>
 <?php echo $steppedAreaChart->getHtmlContainer(); ?>
 
-        <h2>Customized line chart</h2>
+        <h1>Additional charts examples</h1>
+        <h2>Table</h2>
+<?php echo $table->getHtmlContainer(); ?>
+
+        <h1>Customized chart</h1>
 <?php echo $customizedLineChart->getHtmlContainer(); ?>
     </body>
 </html>

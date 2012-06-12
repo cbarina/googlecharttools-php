@@ -40,7 +40,9 @@ use googlecharttools\view\options\Tooltip;
  */
 abstract class Corechart extends Chart {
 
-
+    public function getPackage() {
+        return "corechart";
+    }
 
     /**
      * Sets the chart's background color and border.

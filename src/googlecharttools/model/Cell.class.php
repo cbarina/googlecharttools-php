@@ -171,12 +171,14 @@ class Cell {
      * @return string
      *              The JSON representation of this Cell
      */
-    public function toJsonstring($type) {
+    public function toJsonString($type) {
         $string = "{\"v\": ";
 
         // Convert value to correct output according to the column's type
         switch ($type) {
             case Column::TYPE_BOOLEAN:
+                $string .= $this->value ? "true" : "false";
+                break;
             case Column::TYPE_NUMBER:
                 $string .= $this->value;
                 break;
@@ -196,11 +198,11 @@ class Cell {
 
 
         if ($this->formatted != null) {
-            $string .= ", \"" . $this->formatted . "\"";
+            $string .= ", \"f\": \"" . $this->formatted . "\"";
         }
 
         if ($this->properties != null) {
-            $string .= ", \"" . $this->properties . "\"";
+            $string .= ", \"p\": \"" . $this->properties . "\"";
         }
 
 

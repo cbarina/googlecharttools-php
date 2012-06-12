@@ -103,7 +103,7 @@ class Row {
                 $string .= ", ";
             }
 
-            $string .= $cell->toJsonstring($cols[$i]->getType());
+            $string .= $cell->toJsonString($cols[$i]->getType());
         }
 
         $string .= "]}";
