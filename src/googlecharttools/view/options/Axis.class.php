@@ -56,6 +56,25 @@ class Axis extends OptionStorage {
      */
     const VIEW_MODE_EXPLICIT = "explicit";
 
+
+    /**
+     * Creates a new Axis option-set
+     *
+     * @param string $title
+     *              The axis' title
+     * @param TextStyle $textStyle
+     *              The axis' text style
+     * @param $int $minValue
+     *              The lowest value.
+     * @param $int $maxValue
+     *              The highest value.
+     */
+    public function __construct($title = null, TextStyle $textStyle = null, $minValue = null, $maxValue = null) {
+        $this->setOption("title", $title);
+        $this->setOption("textStyle", $textStyle);
+        $this->setOptionNumeric("minValue", $minValue);
+        $this->setOptionNumeric("maxValue", $maxValue);
+    }
     /**
      * Sets the axis' baseline.
      *

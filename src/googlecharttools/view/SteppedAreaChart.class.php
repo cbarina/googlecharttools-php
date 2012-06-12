@@ -21,24 +21,35 @@
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
  * @version $Id$
- * @package default
+ * @package view
  */
 
 namespace googlecharttools\view;
 
 /**
- * Creates a pie chart.
+ * Creates a stepped area chart.
  *
  * <b>Data format:</b><br />
- * The line chart requires a {@link DataTable} with has to columns.
- * The first column is used for the labels and and the second one for the values.
+ * The stepped area chart requires a {@link DataTable} with at least two columns.
+ * The first column is used for the x-axis labels and values. Each column that
+ * follows will be seen as y-values for one line.
  *
- * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart}
+ * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart}
  * for examples and detailed background information on the required data format.
  *
  * @package view
  */
-class PieChart extends Chart {
+class SteppedAreaChart extends AreaChart {
+
+    /**
+     * Sets if the steps will be connected.
+     *
+     * @param boolean $connect
+     *              If set to true or null, the steps will be connected.
+     */
+    public function setConnectSteps($connect) {
+        $this->setOptionBoolean("connectSteps", $connect);
+    }
 
 }
 

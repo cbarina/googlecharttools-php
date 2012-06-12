@@ -91,7 +91,7 @@ class ComboChart extends AreaChart {
                 $type != self::SERIES_LINE && $type != null) {
             throw new \InvalidArgumentException("Parameter \"type\" is invalid");
         }
-        $this->setOptions("seriesType", $type);
+        $this->setOption("seriesType", $type);
     }
 
     /**

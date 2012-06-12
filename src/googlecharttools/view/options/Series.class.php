@@ -80,7 +80,7 @@ class Series extends OptionStorage {
         $this->setPointSize($pointSize);
         $this->setLineWidth($lineWidth);
         $this->setAreaOpacity($areaOpacity);
-        $this->setType($curveType);
+        $this->setCurveType($curveType);
         $this->setOptionBoolean("visibleInLegend", $visibleInLegend);
     }
 
@@ -99,6 +99,7 @@ class Series extends OptionStorage {
                 $type != self::TYPE_LINE && $type != null) {
             throw new \InvalidArgumentException("Parameter \"type\" is invalid");
         }
+        $this->setOption("type", $type);
     }
 
     /**

@@ -47,30 +47,33 @@ class Row {
     private $cells = array();
 
     /**
-     * Adds a new cell to this row
+     * Adds a new cell to this row.
      *
      * @param Cell $cell
-     *              A cell
+     *              A cell.
+     * @return Row
+     *              This object.
      */
     public function addCell(Cell $cell) {
         $this->cells[] = $cell;
+        return $this;
     }
 
     /**
      * Gets all cells that have been added to this row.
      *
      * @return Cell[]
-     *              All cells that have been added to this row so far
+     *              All cells that have been added to this row so far.
      */
     public function getCells() {
         return $this->cells;
     }
 
     /**
-     * Gets the number of cells that have been added to the row
+     * Gets the number of cells that have been added to the row.
      *
      * @return int
-     *              Number of cells
+     *              Number of cells.
      */
     public function getCellsCount() {
         return count($this->cells);

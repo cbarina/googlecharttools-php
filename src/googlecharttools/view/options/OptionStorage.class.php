@@ -40,9 +40,9 @@ abstract class OptionStorage {
      * Gets an option's value
      *
      * @param string $name
-     *                  The name of the option to get the value for
+     *              The name of the option to get the value for
      * @return mixed
-     *                  The option's value. Might be null, if option is not set
+     *              The option's value. Might be null, if option is not set
      */
     public function getOption($name) {
         if (key_exists($name, $this->options)) {
@@ -63,10 +63,10 @@ abstract class OptionStorage {
      * currently not directly supported by this API (through set...() methods).
      *
      * @param string $name
-     *                  The option's name
+     *              The option's name
      * @param string $value
-     *                  The option's value. If set to null, the option
-     *                  will be removed
+     *              The option's value. If set to null, the option
+     *              will be removed
      */
     public function setOption($name, $value) {
         if ($value !== null) {
@@ -83,10 +83,10 @@ abstract class OptionStorage {
      * However, only boolean values are accepted.
      *
      * @param string $name
-     *                  The option's name
+     *              The option's name
      * @param boolean $value
-     *                  The option's value. If set to null, the option
-     *                  will be removed
+     *              The option's value. If set to null, the option
+     *              will be removed
      */
     public function setOptionBoolean($name, $value) {
         if (is_bool($value) || $value == null) {
@@ -101,10 +101,10 @@ abstract class OptionStorage {
      * However, only numeric values are accepted.
      *
      * @param string $name
-     *                  The option's name
+     *              The option's name
      * @param number $value
-     *                  The option's value. If set to null, the option
-     *                  will be removed
+     *              The option's value. If set to null, the option
+     *              will be removed
      */
     public function setOptionNumeric($name, $value) {
         if (is_numeric($value) || $value == null) {
@@ -119,10 +119,10 @@ abstract class OptionStorage {
      * However, only array values are accepted.
      *
      * @param string $name
-     *                  The option's name
+     *              The option's name
      * @param string[] $value
-     *                  The option's value. If set to null, the option
-     *                  will be removed
+     *              The option's value. If set to null, the option
+     *              will be removed
      */
     public function setOptionArray($name, $value) {
         if (is_array($value) || $value == null) {
@@ -134,30 +134,60 @@ abstract class OptionStorage {
      * Encodes the set options into a JSON-object
      *
      * @return string
-     *                  Encoded options
+     *              Encoded options
      */
     protected function encodeOptions() {
-        $encoded = "{";
+        return $this->encodeArrayToJson($this->options);
+    }
+
+    /**
+     * Encodes a array into a JSON-string
+     *
+     * @param mixed[] $array
+     *              Array, the data is stored in
+     * @param boolean $asObject
+     *              If set to true, the data will be encoded as an JS object.
+     *              Otherwise its encoded as an array.
+     * @return string
+     *              The encoded data.
+     */
+    private function encodeArrayToJson($array, $asObject = true) {
+        if ($asObject) {
+            $encoded = "{";
+        } else {
+            $encoded = "[";
+        }
 
         $first = true;
-        foreach ($this->options as $name => $value) {
+        foreach ($array as $name => $value) {
             if (!$first) {
                 $encoded .= ", ";
             } else {
                 $first = false;
             }
 
+
+            // Add name if the data should be represented as a JSON object
+            if ($asObject) {
+                $encoded .= $name . ": ";
+            }
+
             if ($value instanceof OptionStorage) {
-                $encoded .= $name . ": " . $value->encodeOptions();
+                $encoded .= $value->encodeOptions();
             } else if (is_array($value)) {
-                $encoded .= $name . ": " . json_encode($value);
+                // Include name if array is associative
+                $encoded .= $this->encodeArrayToJson($value, ($value !== array_values($value)));
             } else if (is_bool($value)) {
-                $encoded .= $name . ": " . ($value ? "true" : "false");
+                $encoded .= ($value ? "true" : "false");
             } else {
-                $encoded .= $name . ": \"" . $value . "\"";
+                $encoded .= "\"" . $value . "\"";
             }
         }
-        $encoded .= "}";
+        if ($asObject) {
+            $encoded .= "}";
+        } else {
+            $encoded .= "]";
+        }
         return $encoded;
     }
 

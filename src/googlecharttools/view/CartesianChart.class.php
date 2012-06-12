@@ -27,6 +27,7 @@
 namespace googlecharttools\view;
 
 use googlecharttools\view\options\Animation;
+use googlecharttools\view\options\Axis;
 
 /**
  * A CartesianChart is used as base for all charts that are based on a coordinate system.
@@ -36,7 +37,7 @@ use googlecharttools\view\options\Animation;
  *
  * @package view
  */
-abstract class CartesianChart extends Chart {
+abstract class CartesianChart extends Corechart {
     /**
      * The axis title will be drawn inside the chart area.
      */
@@ -135,9 +136,7 @@ abstract class CartesianChart extends Chart {
      *              line is set as the array's key (a numeric string).
      */
     public function setSeries($series) {
-        if (is_array($series)) {
-            $this->setOption("series", $series);
-        }
+        $this->setOptionArray("series", $series);
     }
 
     /**
@@ -158,6 +157,16 @@ abstract class CartesianChart extends Chart {
         $this->setOption("theme", $theme);
     }
 
+    /**
+     * Sets the axis tile's position.
+     *
+     * @param string $position
+     *              The title's position. Must be one of the <i>AXIS_TITLE_...</i>
+     *              constants.
+     * @throws \InvalidArgumentException
+     *              Thrown, if the given position is invalid. That is, if a value
+     *              other than one of the constants is used.
+     */
     public function setTitlePosition($position) {
         if ($position != self::TITLE_IN && $position != self::TITLE_NONE &&
                 $position != self::TITLE_OUT && $position != null) {
