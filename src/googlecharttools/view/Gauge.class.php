@@ -60,7 +60,7 @@ class Gauge extends Chart {
      *
      * Any valid HTML/CSS color definition can be used (e. g. "white", "#FFF", "#123456").
      *
-     * @param type $color
+     * @param string $color
      *              HTML color string. If set to null, the default color will be used.
      */
     public function setGreenColor($color) {
@@ -141,7 +141,7 @@ class Gauge extends Chart {
      *
      * Any valid HTML/CSS color definition can be used (e. g. "white", "#FFF", "#123456").
      *
-     * @param type $color
+     * @param string $color
      *              HTML color string. If set to null, the default color will be used.
      */
     public function setRedColor($color) {
@@ -175,7 +175,7 @@ class Gauge extends Chart {
      *
      * Any valid HTML/CSS color definition can be used (e. g. "white", "#FFF", "#123456").
      *
-     * @param type $color
+     * @param string $color
      *              HTML color string. If set to null, the default color will be used.
      */
     public function setYellowColor($color) {

@@ -41,6 +41,7 @@ use googlecharttools\view\PieChart;
 use googlecharttools\view\ScatterChart;
 use googlecharttools\view\SteppedAreaChart;
 use googlecharttools\view\Table;
+use googlecharttools\view\TreeMap;
 use googlecharttools\view\ChartManager;
 use googlecharttools\view\options\Axis;
 use googlecharttools\view\options\BackgroundColor;
@@ -486,6 +487,153 @@ $rowBob->addCell(new Cell(7000, "$7,000"));
 $rowBob->addCell(new Cell(true));
 $employeeData->addRow($rowBob);
 
+// Used for tree map
+$marketData = new DataTable();
+$marketData->addColumn(new Column(Column::TYPE_STRING, "l", "Location"));
+$marketData->addColumn(new Column(Column::TYPE_STRING, "p", "Parent"));
+$marketData->addColumn(new Column(Column::TYPE_NUMBER, "s", "Market trade volume (size)"));
+$marketData->addColumn(new Column(Column::TYPE_NUMBER, "c", "Market increase/decrease (color)"));
+
+$rowGlobal = new Row();
+$rowGlobal->addCell(new Cell("Global"))->addCell(new Cell(null));
+$rowGlobal->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowGlobal);
+
+$rowAmerica = new Row();
+$rowAmerica->addCell(new Cell("America"))->addCell(new Cell("Global"));
+$rowAmerica->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowAmerica);
+
+$rowEurope = new Row();
+$rowEurope->addCell(new Cell("Europe"))->addCell(new Cell("Global"));
+$rowEurope->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowEurope);
+
+$rowAsia = new Row();
+$rowAsia->addCell(new Cell("Asia"))->addCell(new Cell("Global"));
+$rowAsia->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowAsia);
+
+$rowAustralia = new Row();
+$rowAustralia->addCell(new Cell("Australia"))->addCell(new Cell("Global"));
+$rowAustralia->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowAustralia);
+
+$rowAfrica = new Row();
+$rowAfrica->addCell(new Cell("Africa"))->addCell(new Cell("Global"));
+$rowAfrica->addCell(new Cell(0))->addCell(new Cell(0));
+$marketData->addRow($rowAfrica);
+
+$rowBrazil = new Row();
+$rowBrazil->addCell(new Cell("Brazil"))->addCell(new Cell("America"));
+$rowBrazil->addCell(new Cell(11))->addCell(new Cell(10));
+$marketData->addRow($rowBrazil);
+
+$rowUsa = new Row();
+$rowUsa->addCell(new Cell("USA"))->addCell(new Cell("America"));
+$rowUsa->addCell(new Cell(52))->addCell(new Cell(31));
+$marketData->addRow($rowUsa);
+
+$rowMexico = new Row();
+$rowMexico->addCell(new Cell("Mexico"))->addCell(new Cell("America"));
+$rowMexico->addCell(new Cell(24))->addCell(new Cell(12));
+$marketData->addRow($rowMexico);
+
+$rowCanada = new Row();
+$rowCanada->addCell(new Cell("Canada"))->addCell(new Cell("America"));
+$rowCanada->addCell(new Cell(16))->addCell(new Cell(-23));
+$marketData->addRow($rowCanada);
+
+$rowFrance = new Row();
+$rowFrance->addCell(new Cell("France"))->addCell(new Cell("Europe"));
+$rowFrance->addCell(new Cell(42))->addCell(new Cell(-11));
+$marketData->addRow($rowFrance);
+
+$rowGermany = new Row();
+$rowGermany->addCell(new Cell("Germany"))->addCell(new Cell("Europe"));
+$rowGermany->addCell(new Cell(31))->addCell(new Cell(-2));
+$marketData->addRow($rowGermany);
+
+$rowSweden = new Row();
+$rowSweden->addCell(new Cell("Sweden"))->addCell(new Cell("Europe"));
+$rowSweden->addCell(new Cell(22))->addCell(new Cell(-13));
+$marketData->addRow($rowSweden);
+
+$rowItaly = new Row();
+$rowItaly->addCell(new Cell("Italy"))->addCell(new Cell("Europe"));
+$rowItaly->addCell(new Cell(17))->addCell(new Cell(4));
+$marketData->addRow($rowItaly);
+
+$rowUk = new Row();
+$rowUk->addCell(new Cell("UK"))->addCell(new Cell("Europe"));
+$rowUk->addCell(new Cell(21))->addCell(new Cell(-5));
+$marketData->addRow($rowUk);
+
+$rowChina = new Row();
+$rowChina->addCell(new Cell("China"))->addCell(new Cell("Asia"));
+$rowChina->addCell(new Cell(36))->addCell(new Cell(4));
+$marketData->addRow($rowChina);
+
+$rowJapan = new Row();
+$rowJapan->addCell(new Cell("Japan"))->addCell(new Cell("Asia"));
+$rowJapan->addCell(new Cell(20))->addCell(new Cell(-12));
+$marketData->addRow($rowJapan);
+
+$rowIndia = new Row();
+$rowIndia->addCell(new Cell("India"))->addCell(new Cell("Asia"));
+$rowIndia->addCell(new Cell(40))->addCell(new Cell(63));
+$marketData->addRow($rowIndia);
+
+$rowLaos = new Row();
+$rowLaos->addCell(new Cell("Laos"))->addCell(new Cell("Asia"));
+$rowLaos->addCell(new Cell(4))->addCell(new Cell(34));
+$marketData->addRow($rowLaos);
+
+$rowMongolia = new Row();
+$rowMongolia->addCell(new Cell("Mongolia"))->addCell(new Cell("Asia"));
+$rowMongolia->addCell(new Cell(1))->addCell(new Cell(-5));
+$marketData->addRow($rowMongolia);
+
+$rowIsrael = new Row();
+$rowIsrael->addCell(new Cell("Israel"))->addCell(new Cell("Asia"));
+$rowIsrael->addCell(new Cell(12))->addCell(new Cell(24));
+$marketData->addRow($rowIsrael);
+
+$rowIran = new Row();
+$rowIran->addCell(new Cell("Iran"))->addCell(new Cell("Asia"));
+$rowIran->addCell(new Cell(18))->addCell(new Cell(13));
+$marketData->addRow($rowIran);
+
+$rowPakistan = new Row();
+$rowPakistan->addCell(new Cell("Pakistan"))->addCell(new Cell("Asia"));
+$rowPakistan->addCell(new Cell(11))->addCell(new Cell(-52));
+$marketData->addRow($rowPakistan);
+
+$rowEgypt = new Row();
+$rowEgypt->addCell(new Cell("Egypt"))->addCell(new Cell("Africa"));
+$rowEgypt->addCell(new Cell(21))->addCell(new Cell(0));
+$marketData->addRow($rowEgypt);
+
+$rowSAfrica = new Row();
+$rowSAfrica->addCell(new Cell("S. Africa"))->addCell(new Cell("Africa"));
+$rowSAfrica->addCell(new Cell(30))->addCell(new Cell(43));
+$marketData->addRow($rowSAfrica);
+
+$rowSudan = new Row();
+$rowSudan->addCell(new Cell("Sudan"))->addCell(new Cell("Africa"));
+$rowSudan->addCell(new Cell(12))->addCell(new Cell(2));
+$marketData->addRow($rowSudan);
+
+$rowCongo = new Row();
+$rowCongo->addCell(new Cell("Congo"))->addCell(new Cell("Africa"));
+$rowCongo->addCell(new Cell(10))->addCell(new Cell(12));
+$marketData->addRow($rowCongo);
+
+$rowZair = new Row();
+$rowZair->addCell(new Cell("Zair"))->addCell(new Cell("Africa"));
+$rowZair->addCell(new Cell(8))->addCell(new Cell(10));
+$marketData->addRow($rowZair);
+
 
 // Prepare charts
 // --------------
@@ -557,6 +705,14 @@ $steppedAreaChart->setIsStacked(true);
 $table = new Table("employeeTable", $employeeData);
 $table->setShowRowNumber(true);
 
+$treeMap = new TreeMap("marketTree", $marketData);
+$treeMap->setMinColor("#f00");
+$treeMap->setMidColor("#ddd");
+$treeMap->setMaxColor("#0d0");
+$treeMap->setHeaderHeight(15);
+$treeMap->setFontColor("black");
+$treeMap->setShowScale(true);
+
 $manager->addChart($areaChart);
 $manager->addChart($barChart);
 $manager->addChart($bubbleChart);
@@ -571,6 +727,7 @@ $manager->addChart($pieChart);
 $manager->addChart($scatterChart);
 $manager->addChart($steppedAreaChart);
 $manager->addChart($table);
+$manager->addChart($treeMap);
 
 // Customized chart
 $backgroundColor = new BackgroundColor("#666", 10, "lightgrey");
@@ -634,6 +791,9 @@ $manager->addChart($customizedLineChart);
 
         <h2>Table</h2>
         <?php echo $table->getHtmlContainer(); ?>
+
+        <h2>Tree map</h2>
+        <?php echo $treeMap->getHtmlContainer(); ?>
 
         <h1>Customized chart</h1>
 <?php echo $customizedLineChart->getHtmlContainer(); ?>
