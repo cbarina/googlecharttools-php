@@ -1,5 +1,4 @@
 <?php
-
 /*
  * Copyright 2012 Patrick Strobel.
  *
@@ -25,8 +24,6 @@
  * @version $Id$
  * @package default
  */
-
-
 use googlecharttools\model\Cell;
 use googlecharttools\model\Column;
 use googlecharttools\model\DataTable;
@@ -37,6 +34,8 @@ use googlecharttools\view\BubbleChart;
 use googlecharttools\view\CandlestickChart;
 use googlecharttools\view\ColumnChart;
 use googlecharttools\view\ComboChart;
+use googlecharttools\view\Gauge;
+use googlecharttools\view\GeoChart;
 use googlecharttools\view\LineChart;
 use googlecharttools\view\PieChart;
 use googlecharttools\view\ScatterChart;
@@ -47,6 +46,7 @@ use googlecharttools\view\options\Axis;
 use googlecharttools\view\options\BackgroundColor;
 use googlecharttools\view\options\Bubble;
 use googlecharttools\view\options\ChartArea;
+use googlecharttools\view\options\ColorAxis;
 use googlecharttools\view\options\Legend;
 use googlecharttools\view\options\Series;
 use googlecharttools\view\options\TextStyle;
@@ -58,7 +58,6 @@ googlecharttools\ClassLoader::register();
 
 // Prepare data
 // ------------
-
 // Used for area, bar and column charts
 $companyData = new DataTable();
 $companyData->addColumn(new Column(Column::TYPE_STRING, "y", "Year"));
@@ -285,6 +284,89 @@ $row2008->addCell(new Cell(366));
 $row2008->addCell(new Cell(569.6));
 $coffeeData->addRow($row2008);
 
+// Used for gauge
+$pcData = new DataTable();
+$pcData->addColumn(new Column(Column::TYPE_STRING, "l", "Label"));
+$pcData->addColumn(new Column(Column::TYPE_NUMBER, "v", "Value"));
+
+$rowMem = new Row();
+$rowMem->addCell(new Cell("Memory"))->addCell(new Cell(80));
+$pcData->addRow($rowMem);
+
+$rowCpu = new Row();
+$rowCpu->addCell(new Cell("CPU"))->addCell(new Cell(55));
+$pcData->addRow($rowCpu);
+
+$rowNet = new Row();
+$rowNet->addCell(new Cell("Network"))->addCell(new Cell(68));
+$pcData->addRow($rowNet);
+
+// Used for geo chart
+$popularityData = new DataTable();
+$popularityData->addColumn(new Column(Column::TYPE_STRING, "c", "Country"));
+$popularityData->addColumn(new Column(Column::TYPE_NUMBER, "p", "Popularity"));
+
+$rowGermany = new Row();
+$rowGermany->addCell(new Cell("Germany"))->addCell(new Cell(200));
+$popularityData->addRow($rowGermany);
+
+$rowUs = new Row();
+$rowUs->addCell(new Cell("United States"))->addCell(new Cell(300));
+$popularityData->addRow($rowGermany);
+
+$rowBrazil = new Row();
+$rowBrazil->addCell(new Cell("Brazil"))->addCell(new Cell(400));
+$popularityData->addRow($rowBrazil);
+
+$rowCanada = new Row();
+$rowCanada->addCell(new Cell("Canada"))->addCell(new Cell(500));
+$popularityData->addRow($rowCanada);
+
+$rowFrance = new Row();
+$rowFrance->addCell(new Cell("France"))->addCell(new Cell(600));
+$popularityData->addRow($rowFrance);
+
+$rowRu = new Row();
+$rowRu->addCell(new Cell("RU"))->addCell(new Cell(700));
+$popularityData->addRow($rowRu);
+
+$cityData = new DataTable();
+$cityData->addColumn(new Column(Column::TYPE_STRING, "c", "City"));
+$cityData->addColumn(new Column(Column::TYPE_NUMBER, "p", "Population"));
+$cityData->addColumn(new Column(Column::TYPE_NUMBER, "a", "Area"));
+
+$rowRome = new Row();
+$rowRome->addCell(new Cell("Rome"))->addCell(new Cell(2761477))->addCell(new Cell(1285.31));
+$cityData->addRow($rowRome);
+
+$rowMilan = new Row();
+$rowMilan->addCell(new Cell("Milan"))->addCell(new Cell(1324110))->addCell(new Cell(181.76));
+$cityData->addRow($rowMilan);
+
+$rowNaples = new Row();
+$rowNaples->addCell(new Cell("Naples"))->addCell(new Cell(959574))->addCell(new Cell(117.27));
+$cityData->addRow($rowNaples);
+
+$rowTurin = new Row();
+$rowTurin->addCell(new Cell("Turin"))->addCell(new Cell(907563))->addCell(new Cell(130.17));
+$cityData->addRow($rowTurin);
+
+$rowPalermo = new Row();
+$rowPalermo->addCell(new Cell("Palermo"))->addCell(new Cell(655875))->addCell(new Cell(158.9));
+$cityData->addRow($rowPalermo);
+
+$rowGenoa = new Row();
+$rowGenoa->addCell(new Cell("Genoa"))->addCell(new Cell(607906))->addCell(new Cell(243.60));
+$cityData->addRow($rowGenoa);
+
+$rowBologna = new Row();
+$rowBologna->addCell(new Cell("Bologna"))->addCell(new Cell(380181))->addCell(new Cell(140.7));
+$cityData->addRow($rowBologna);
+
+$rowFlorence = new Row();
+$rowFlorence->addCell(new Cell("Florence"))->addCell(new Cell(380181))->addCell(new Cell(140.7));
+$cityData->addRow($rowFlorence);
+
 // Used for pie chart
 $activitiesData = new DataTable();
 $activitiesData->addColumn(new Column(Column::TYPE_STRING, "t", "Task"));
@@ -440,6 +522,21 @@ $comboChart->setVAxis(new Axis("Cups"));
 $comboChart->setSeriesType(ComboChart::SERIES_BARS);
 $comboChart->setSeries(array(5 => new Series(Series::TYPE_LINE)));
 
+$gauge = new Gauge("pcGauge", $pcData);
+$gauge->setRedFrom(90);
+$gauge->setRedTo(100);
+$gauge->setYellowFrom(75);
+$gauge->setYellowTo(90);
+$gauge->setMinorTicks(5);
+
+$regionsGeoChart = new GeoChart("regionGeo", $popularityData);
+$markersGeoChart = new GeoChart("markersGeo", $cityData);
+$markersGeoChart->setRegion("IT");
+$markersGeoChart->setDisplayMode(GeoChart::MODE_MARKERS);
+$markersColorAxis = new ColorAxis();
+$markersColorAxis->setColor(array("green", "blue"));
+$markersGeoChart->setColorAxis($markersColorAxis);
+
 $lineChart = new LineChart("companyLine", $companyData);
 $lineChart->setTitle("Company Performance");
 
@@ -466,6 +563,9 @@ $manager->addChart($bubbleChart);
 $manager->addChart($candlestickChart);
 $manager->addChart($columnChart);
 $manager->addChart($comboChart);
+$manager->addChart($gauge);
+$manager->addChart($regionsGeoChart);
+$manager->addChart($markersGeoChart);
 $manager->addChart($lineChart);
 $manager->addChart($pieChart);
 $manager->addChart($scatterChart);
@@ -486,7 +586,6 @@ $customizedLineChart->setLegend($legend);
 $customizedLineChart->setReverseCategories(true);
 $customizedLineChart->setTooltip($tooltip);
 $manager->addChart($customizedLineChart);
-
 ?>
 <html>
     <head>
@@ -496,7 +595,7 @@ $manager->addChart($customizedLineChart);
     <body>
         <h1>Corechart examples</h1>
         <h2>Area chart</h2>
-<?php echo $areaChart->getHtmlContainer(); ?>
+        <?php echo $areaChart->getHtmlContainer(); ?>
 
         <h2>Bar chart</h2>
 <?php echo $barChart->getHtmlContainer(); ?>
@@ -526,8 +625,15 @@ $manager->addChart($customizedLineChart);
 <?php echo $steppedAreaChart->getHtmlContainer(); ?>
 
         <h1>Additional charts examples</h1>
+        <h2>Gauge</h2>
+        <?php echo $gauge->getHtmlContainer(); ?>
+
+        <h2>Geo chart</h2>
+<?php echo $regionsGeoChart->getHtmlContainer(); ?>
+        <?php echo $markersGeoChart->getHtmlContainer(); ?>
+
         <h2>Table</h2>
-<?php echo $table->getHtmlContainer(); ?>
+        <?php echo $table->getHtmlContainer(); ?>
 
         <h1>Customized chart</h1>
 <?php echo $customizedLineChart->getHtmlContainer(); ?>

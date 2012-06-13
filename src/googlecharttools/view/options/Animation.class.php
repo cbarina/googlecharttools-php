@@ -99,7 +99,7 @@ class Animation extends OptionStorage {
         if ($easing != self::EASING_IN && $easing != self::EASING_IN_AND_OUT &&
                 $easing != self::EASING_LINEAR && $easing != self::EASING_OUT &&
                 $easing != null) {
-            throw new \InvalidArgumentException("Parameter \"easing\" is invalid");
+            throw new \InvalidArgumentException("Argument \"easing\" is invalid");
         }
         $this->setOption("easing", $easing);
     }

@@ -99,7 +99,7 @@ abstract class CartesianChart extends Corechart {
     public function setAxisTitlesPosition($position) {
         if ($position != self::AXIS_TITLE_IN && $position != self::AXIS_TITLE_NONE &&
                 $position != self::AXIS_TITLE_OUT && $position != null) {
-            throw new \InvalidArgumentException("Parameter \"position\" is invalid");
+            throw new \InvalidArgumentException("Argument \"position\" is invalid");
         }
         $this->setOption("axisTitlesPosition", $position);
     }
@@ -152,7 +152,7 @@ abstract class CartesianChart extends Corechart {
      */
     public function setTheme($theme) {
         if ($theme != self::THEME_MAXIMIZED && $theme != null) {
-            throw new \InvalidArgumentException("Parameter \"theme\" is invalid");
+            throw new \InvalidArgumentException("Argument \"theme\" is invalid");
         }
         $this->setOption("theme", $theme);
     }
@@ -170,7 +170,7 @@ abstract class CartesianChart extends Corechart {
     public function setTitlePosition($position) {
         if ($position != self::TITLE_IN && $position != self::TITLE_NONE &&
                 $position != self::TITLE_OUT && $position != null) {
-            throw new \InvalidArgumentException("Parameter \"position\" is invalid");
+            throw new \InvalidArgumentException("Argument \"position\" is invalid");
         }
         $this->setOption("titlePosition", $position);
     }

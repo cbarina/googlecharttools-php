@@ -147,7 +147,7 @@ class Column {
         if ($type != self::TYPE_BOOLEAN && $type != self::TYPE_DATE &&
                 $type != self::TYPE_DATETIME && $type != self::TYPE_NUMBER &&
                 $type != self::TYPE_STRING && $type != self::TYPE_TIMEOFDAY) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->type = $type;
     }

@@ -105,7 +105,7 @@ class Tooltip extends OptionStorage {
     public function setText($text) {
         if ($text != self::TEXT_BOTH && $text != self::TEXT_PERCENTAGE &&
                 $text != self::TEXT_VALUE && $text != null) {
-            throw new \InvalidArgumentException("Parameter \"text\" is invalid");
+            throw new \InvalidArgumentException("Argument \"text\" is invalid");
         }
         $this->setOption("text", $text);
     }
@@ -130,7 +130,7 @@ class Tooltip extends OptionStorage {
     public function setTrigger($trigger) {
         if ($trigger != self::TRIGGER_HOVER && $trigger != self::TRIGGER_NONE &&
                 $trigger != null) {
-            throw new \InvalidArgumentException("Parameter \"trigger\" is invalid");
+            throw new \InvalidArgumentException("Argument \"trigger\" is invalid");
         }
         $this->setOption("trigger", $trigger);
     }

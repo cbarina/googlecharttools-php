@@ -56,6 +56,17 @@ abstract class Corechart extends Chart {
     }
 
     /**
+     * Sets the chart's position and size relative to it's border
+     *
+     * @param ChartArea $area
+     *              Position and size. If set to null, the default
+     *              position and size will be used.
+     */
+    public function setChartArea(ChartArea $area) {
+        $this->setOption("chartArea", $area);
+    }
+
+    /**
      * Sets the chart element's color.
      *
      * These colors will be assigned to the chart's elements
@@ -68,17 +79,6 @@ abstract class Corechart extends Chart {
      */
     public function setColors($colors) {
         $this->setOptionArray("colors", $colors);
-    }
-
-    /**
-     * Sets the chart's position and size relative to it's border
-     *
-     * @param ChartArea $area
-     *              Position and size. If set to null, the default
-     *              position and size will be used.
-     */
-    public function setChartArea(ChartArea $area) {
-        $this->setOption("chartArea", $area);
     }
 
     /**
@@ -162,5 +162,7 @@ abstract class Corechart extends Chart {
     public function setTooltip(Tooltip $tooltip) {
         $this->setOption("tooltip", $tooltip);
     }
-    }
+
+}
+
 ?>

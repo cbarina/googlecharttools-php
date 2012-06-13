@@ -60,7 +60,7 @@ class ComboChart extends AreaChart {
     public function setCurveType($type) {
         if ($type != self::CURVE_FUNCTION && $type != self::CURVE_NONE &&
                 $type != null) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->setOption("curveType", $type);
     }
@@ -89,7 +89,7 @@ class ComboChart extends AreaChart {
     public function setSeriesType($type) {
         if ($type != self::SERIES_AREA && $type != self::SERIES_BARS &&
                 $type != self::SERIES_LINE && $type != null) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->setOption("seriesType", $type);
     }

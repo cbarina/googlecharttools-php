@@ -57,7 +57,7 @@ class ScatterChart extends ContinuousChart {
     public function setCurveType($type) {
         if ($type != self::CURVE_FUNCTION && $type != self::CURVE_NONE &&
                 $type != null) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->setOption("curveType", $type);
     }

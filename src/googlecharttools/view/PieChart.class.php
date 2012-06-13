@@ -30,7 +30,7 @@ namespace googlecharttools\view;
  * Creates a pie chart.
  *
  * <b>Data format:</b><br />
- * The line chart requires a {@link DataTable} with has to columns.
+ * The pie chart requires a {@link DataTable} which has two columns.
  * The first column is used for the labels and and the second one for the values.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/piechart}
@@ -111,7 +111,7 @@ class PieChart extends Corechart {
         if ($text != self::TEXT_LABEL && $text != self::TEXT_NONE &&
                 $text != self::TEXT_PERCENTAGE && self::TEXT_VALUE &&
                 $text != null) {
-            throw new \InvalidArgumentException("Parameter \"text\" is invalid");
+            throw new \InvalidArgumentException("Argument \"text\" is invalid");
         }
         $this->setOption("pieSliceText", $text);
     }

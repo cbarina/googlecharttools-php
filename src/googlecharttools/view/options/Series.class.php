@@ -97,7 +97,7 @@ class Series extends OptionStorage {
     public function setType($type) {
         if ($type != self::TYPE_AREA && $type != self::TYPE_BARS &&
                 $type != self::TYPE_LINE && $type != null) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->setOption("type", $type);
     }
@@ -183,7 +183,7 @@ class Series extends OptionStorage {
     public function setCurveType($type) {
         if ($type != self::CURVE_FUNCTION && $type != self::CURVE_NONE &&
                 $type != null) {
-            throw new \InvalidArgumentException("Parameter \"type\" is invalid");
+            throw new \InvalidArgumentException("Argument \"type\" is invalid");
         }
         $this->setOption("curveType", $type);
     }

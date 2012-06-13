@@ -118,7 +118,7 @@ class Table extends Chart {
     public function setPage($page) {
         if ($page != self::MODE_DISABLE && $page != self::MODE_ENABLE &&
                 $page != self::MODE_EVENT && $page != null) {
-            throw new \InvalidArgumentException("Parameter \"page\" is invalid");
+            throw new \InvalidArgumentException("Argument \"page\" is invalid");
         }
         $this->setOption("page", $page);
     }
@@ -186,7 +186,7 @@ class Table extends Chart {
     public function setSort($sort) {
         if ($sort != self::MODE_DISABLE && $sort != self::MODE_ENABLE &&
                 $sort != self::MODE_EVENT && $sort != null) {
-            throw new \InvalidArgumentException("Parameter \"sort\" is invalid");
+            throw new \InvalidArgumentException("Argument \"sort\" is invalid");
         }
         $this->setOption("sort", $sort);
     }

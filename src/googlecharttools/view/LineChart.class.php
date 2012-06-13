@@ -66,7 +66,7 @@ class LineChart extends ContinuousChart {
     public function setFocusTarget($target) {
         if ($target != self::FOCUS_CATEGORY && $target != self::FOCUS_DATUM &&
                 $target != null) {
-            throw new \InvalidArgumentException("Parameter \"target\" is invalid");
+            throw new \InvalidArgumentException("Argument \"target\" is invalid");
         }
         $this->setOption("focusTarget", $target);
     }

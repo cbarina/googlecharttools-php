@@ -48,7 +48,7 @@ class AreaChart extends LineChart {
      *
      * @param float $opacity
      *              The areas opacity. 0.0 means fully transparent, 1.0
-     *              fully opaque
+     *              fully opaque. If set to null, the default opacity will be used.
      */
     public function setAreaOpacity($opacity) {
         if ($opacity >= 0.0 && $opacity <= 1.0) {

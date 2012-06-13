@@ -91,7 +91,7 @@ class Legend extends OptionStorage {
         if ($position != self::POSITION_BOTTOM && $position != self::POSITION_IN &&
                 $position != self::POSITION_NONE && $position != self::POSITION_RIGHT &&
                 $position != self::POSITION_TOP && $position != null) {
-            throw new \InvalidArgumentException("Parameter \"position\" is invalid");
+            throw new \InvalidArgumentException("Argument \"position\" is invalid");
         }
         $this->setOption("position", $position);
     }

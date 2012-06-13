@@ -158,7 +158,7 @@ class Axis extends OptionStorage {
     public function setTextPosition($position) {
         if ($position != self::TEXT_POSITION_IN && $position != self::TEXT_POSITION_NONE &&
                 $position != self::TEXT_POSITION_OUT) {
-            throw new \InvalidArgumentException("Parameter \"position\" is invalid");
+            throw new \InvalidArgumentException("Argument \"position\" is invalid");
         }
         $this->setOption("position", $position);
     }
@@ -226,7 +226,7 @@ class Axis extends OptionStorage {
     public function setViewWindowMode($mode) {
         if ($mode != self::VIEW_MODE_EXPLICIT && $mode != self::VIEW_MODE_MAXIMIZED &&
                 $mode != self::VIEW_MODE_PRETTY && $mode != null) {
-            throw new \InvalidArgumentException("Parameter \"mode\" is invalid");
+            throw new \InvalidArgumentException("Argument \"mode\" is invalid");
         }
         $this->setOption("viewWindowMode", $mode);
     }
