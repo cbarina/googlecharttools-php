@@ -28,7 +28,7 @@
 namespace googlecharttools\view\options;
 
 /**
- * The MagnifyingGlass defines the magnifying glass behaviour.
+ * The MagnifyingGlass defines the magnifying glass' behaviour.
  *
  * @package view
  * @subpackage options
@@ -69,7 +69,7 @@ class MagnifyingGlass extends OptionStorage {
      *              If set to null, "5.0" will be used.
      */
     public function setZoomFactor($zoom) {
-        if ($zoom > 0) {
+        if ($zoom > 0 || $zoom == null) {
             $this->setOptionNumeric("zoomFactor", $zoom);
         }
     }

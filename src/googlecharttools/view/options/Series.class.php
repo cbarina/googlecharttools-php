@@ -49,8 +49,8 @@ class Series extends OptionStorage {
      * Creates a new Series option-set.
      *
      * @param string $type
-     *              The series marker's type. Must be on of the <i>TYPE_...</i>
-     *              constants.
+     *              The series' marker type. Must be on of the <i>TYPE_...</i>
+     *              constants or null.
      * @param string $color
      *              The series' color. Any valid HTML/CSS color definition
      *              (e. g. "white", "#FFF", "#123456").
@@ -66,7 +66,7 @@ class Series extends OptionStorage {
      *              transparent, 1.0 fully opaque.
      * @param $curveType
      *              The series' curve type. Must be one of the <i>CURVE_...</i>
-     *              constants.
+     *              constants or null.
      * @param boolean $visibleInLegend
      *              If set to true, the series will be displayed in the legend.
      * @throws \InvalidArgumentException
@@ -88,8 +88,8 @@ class Series extends OptionStorage {
      * Sets the series' type.
      *
      * @param string $type
-     *              The series marker's type. Must be on of the <i>TYPE_...</i>
-     *              constants. If set to null, the default type will be used.
+     *              The series' marker type. Must be on of the <i>TYPE_...</i>
+     *              constants or null. If set to null, the default type will be used.
      * @throws \InvalidArgumentException
      *              Thrown, if the given type is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -123,7 +123,7 @@ class Series extends OptionStorage {
      *              ("0" default axis, "1" opposite axis).
      */
     public function setTargetAxisIndex($index) {
-        if ($index == 0 || $index == 1) {
+        if ($index == 0 || $index == 1 || $index == null) {
             $this->setOptionNumeric("targetAxisIndex", $index);
         }
     }
@@ -138,7 +138,7 @@ class Series extends OptionStorage {
      *              If set to null, the default width (2 pixels) will be used.
      */
     public function setLineWidth($width) {
-        if ($width >= 0) {
+        if ($width >= 0 || $width == null) {
             $this->setOptionNumeric("lineWidth", $width);
         }
     }
@@ -152,7 +152,7 @@ class Series extends OptionStorage {
      *              If set to null, the data points won't be displayed.
      */
     public function setPointSize($size) {
-        if ($size >= 0) {
+        if ($size >= 0 || $width == null) {
             $this->setOptionNumeric("pointSize", $size);
         }
     }
@@ -162,7 +162,7 @@ class Series extends OptionStorage {
      *
      * @param float $opacity
      *                  The areas opacity. 0.0 means fully transparent, 1.0
-     *                  fully opaque
+     *                  fully opaque.
      */
     public function setAreaOpacity($opacity) {
         if ($opacity >= 0.0 && $opacity <= 1.0) {
@@ -175,7 +175,7 @@ class Series extends OptionStorage {
      *
      * @param string $type
      *              The series' curve type. Must be one of the <i>CURVE_...</i>
-     *              constants. If set to null, the default type will be used.
+     *              constants or null. If set to null, the default type will be used.
      * @throws \InvalidArgumentException
      *              Thrown, if the given type is invalid. That is, if a value
      *              other than one of the constants is used.

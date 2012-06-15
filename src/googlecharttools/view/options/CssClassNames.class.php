@@ -61,7 +61,7 @@ class CssClassNames extends OptionStorage {
     /**
      * Sets the CSS-class that will be used for the table's odd data rows.
      *
-     * This is also valid if {@Table:setAlternatingRowStyle()} is set to true.
+     * This is only valid if {@Table:setAlternatingRowStyle()} is set to true.
      *
      * @param string $class
      *              The table's odd rows CSS-class. If set to null, the default
@@ -83,7 +83,7 @@ class CssClassNames extends OptionStorage {
     }
 
     /**
-     * Sets the CSS-class that will be used for the table's hovered rows..
+     * Sets the CSS-class that will be used for the table's hovered rows.
      *
      * @param string $class
      *              The table's hovered rows CSS-class. If set to null, the default

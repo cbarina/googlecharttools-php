@@ -30,7 +30,6 @@ namespace googlecharttools\view\options;
 /**
  * The ChartArea defines the size and position of the displayed chart area.
  *
- *
  * @package view
  * @subpackage options
  */

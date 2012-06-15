@@ -34,10 +34,10 @@ namespace googlecharttools\view\options;
  * @subpackage options
  */
 class Tooltip extends OptionStorage {
+
     /**
      * Percentage and absolute values will be displayed.
      */
-
     const TEXT_BOTH = "both";
 
     /**
@@ -51,7 +51,7 @@ class Tooltip extends OptionStorage {
     const TEXT_PERCENTAGE = "percentage";
 
     /**
-     * Tooltip will be displayed when the cursor is over the element.
+     * Tooltip will be displayed when the cursor is over a element.
      */
     const TRIGGER_HOVER = "hover";
 
@@ -61,20 +61,20 @@ class Tooltip extends OptionStorage {
     const TRIGGER_NONE = "none";
 
     /**
-     * Creates a new TextStyle option-set.
+     * Creates a new Tooltip option-set.
      *
      * @param boolean $showColorCode
      *              If set to to true, the chart element's color will be shown
      *              inside the tooltip.
      * @param string $text
-     *              This is only recognized in pie charts. Defines which information
+     *              This is only recognized in {@link PieChart}s. Defines which information
      *              will be shown in the tooltip. Must be one of the <i>TEXT_...</i>
-     *              constants.
+     *              constants or null.
      * @param TextStyle $textStyle
      *              The text style used for the tooltip.
      * @param string $trigger
      *              Defines which interaction causes the tooltip to be shown.
-     *              Must be one of the <i>TRIGGER_...</i> constants.
+     *              Must be one of the <i>TRIGGER_...</i> constants or null.
      */
     public function __construct($showColorCode = null, $text = null, $textStyle = null, $trigger = null) {
         $this->setOptionBoolean("showColorCode", $showColorCode);
@@ -89,6 +89,7 @@ class Tooltip extends OptionStorage {
      * @param boolean $color
      *              If set to to true, the chart element's color will be shown
      *              inside the tooltip.
+     *              If set to false or null, they won't.
      */
     public function setShowColorCode($showColorCode) {
         $this->setOptionBoolean("showColorCode", $showColorCode);
@@ -98,9 +99,9 @@ class Tooltip extends OptionStorage {
      * Sets which information will be shown in the tooltip of pie-charts.
      *
      * @param string $text
-     *              This is only recognized in pie charts. Defines which information
+     *              This is only recognized in {@link PieChart}s. Defines which information
      *              will be shown in the tooltip. Must be one of the <i>TEXT_...</i>
-     *              constants.
+     *              constants or null.
      */
     public function setText($text) {
         if ($text != self::TEXT_BOTH && $text != self::TEXT_PERCENTAGE &&
@@ -114,7 +115,7 @@ class Tooltip extends OptionStorage {
      * Sets the text style of the chart's tooltip.
      *
      * @param TextStyle $name
-     *              The text style.
+     *              The text style. If set to null, the default style will be used.
      */
     public function setTextStyle(TextStyle $textStyle) {
         $this->setOption("textStyle", $textStyle);
@@ -125,7 +126,7 @@ class Tooltip extends OptionStorage {
      *
      * @param string $trigger
      *              Defines which interaction causes the tooltip to be shown.
-     *              Must be one of the <i>TRIGGER_...</i> constants.
+     *              Must be one of the <i>TRIGGER_...</i> constants or null.
      */
     public function setTrigger($trigger) {
         if ($trigger != self::TRIGGER_HOVER && $trigger != self::TRIGGER_NONE &&

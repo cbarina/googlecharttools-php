@@ -36,7 +36,7 @@ namespace googlecharttools\view\options;
 class Gridlines extends OptionStorage {
 
     /**
-     * Creates a new Gridlines option-set
+     * Creates a new Gridlines option-set.
      *
      * @param string $color
      *              The gridlines' color. Any valid HTML/CSS color definition
@@ -71,7 +71,7 @@ class Gridlines extends OptionStorage {
      *              the default number will be used.
      */
     public function setCount($count) {
-        if ($count >= 2) {
+        if ($count >= 2 || $count == null) {
             $this->setOptionNumeric("count", $count);
         }
     }

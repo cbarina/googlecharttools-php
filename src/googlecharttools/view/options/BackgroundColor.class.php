@@ -37,13 +37,13 @@ namespace googlecharttools\view\options;
 class BackgroundColor extends OptionStorage {
 
     /**
-     * Creates a new BackgroundColor option-set
+     * Creates a new BackgroundColor option-set.
      *
      * @param string $stroke
      *              The chart's border color. Any valid HTML/CSS color definition
      *              (e. g. "white", "#FFF", "#123456").
      * @param int $strokeWidth
-     *              The width of the chart's border in pixel
+     *              The width of the chart's border in pixels.
      * @param string $fill
      *              The chart's background color. Any valid HTML/CSS color definition
      *              (e. g. "white", "#FFF", "#123456").
@@ -70,7 +70,7 @@ class BackgroundColor extends OptionStorage {
      * Sets the width of the chart's border.
      *
      * @param int $width
-     *              Border-width in pixel. If set to null, the default width will be used.
+     *              Border-width in pixels. If set to null, the default width will be used.
      */
     public function setStrokeWidth($width) {
         $this->setOption("strokeWidth", $width);

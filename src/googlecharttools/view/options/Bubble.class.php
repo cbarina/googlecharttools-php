@@ -28,7 +28,7 @@
 namespace googlecharttools\view\options;
 
 /**
- * The BackgroundColor stores the appearance of a bubble in the bubble chart.
+ * The Bubble stores the appearance of a bubble in the bubble chart.
  *
  * @package view
  * @subpackage options
@@ -36,12 +36,12 @@ namespace googlecharttools\view\options;
 class Bubble extends OptionStorage {
 
     /**
-     * Creates a new BackgroundColor option-set
+     * Creates a new BackgroundColor option-set.
      *
      *
      * @param float $opacity
      *              The bubbles' opacity. 0.0 means fully transparent, 1.0
-     *              fully opaque
+     *              fully opaque.
      * @param string $stroke
      *              The bubbles' border color. Any valid HTML/CSS color definition
      *              (e. g. "white", "#FFF", "#123456").
@@ -58,8 +58,8 @@ class Bubble extends OptionStorage {
      * Sets the buuble's opacity.
      *
      * @param float $opacity
-     *                  The bubble's opacity. 0.0 means fully transparent, 1.0
-     *                  fully opaque.
+     *              The bubble's opacity. 0.0 means fully transparent, 1.0
+     *              fully opaque.
      */
     public function setOpacity($opacity) {
         if ($opacity >= 0.0 && $opacity <= 1.0) {
@@ -83,7 +83,7 @@ class Bubble extends OptionStorage {
      * Sets the text style of the bubbles' labels.
      *
      * @param TextStyle $name
-     *              The text style.
+     *              The text style. If set to null, the default text style will be used.
      */
     public function setTextStyle(TextStyle $textStyle) {
         $this->setOption("textStyle", $textStyle);

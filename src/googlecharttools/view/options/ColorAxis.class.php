@@ -28,7 +28,7 @@
 namespace googlecharttools\view\options;
 
 /**
- * The ColorAxis is used to map the bubble chart's elements to a color or a gradient.
+ * The ColorAxis is used to map the chart's elements to a color or a gradient.
  *
  * @package view
  * @subpackage options
@@ -45,7 +45,7 @@ class ColorAxis extends OptionStorage {
      * @param int[] $values
      *              The mapping between colors and elements.
      * @param string[] $colors
-     *              An array of colors. Each element mus be a valid HTML color
+     *              An array of colors. Each element must be a valid HTML color
      *              string.
      * @param Legend $legend
      *              The legend's style.
@@ -94,7 +94,7 @@ class ColorAxis extends OptionStorage {
      * Sets the colors used as gradient or single color for the chart's elements.
      *
      * @param string[] $colors
-     *              An array of colors. Each element mus be a valid HTML color
+     *              An array of colors. Each element must be a valid HTML color
      *              string.
      */
     public function setColor($colors) {

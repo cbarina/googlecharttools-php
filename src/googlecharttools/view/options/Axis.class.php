@@ -61,9 +61,9 @@ class Axis extends OptionStorage {
      * Creates a new Axis option-set
      *
      * @param string $title
-     *              The axis' title
+     *              The axis' title.
      * @param TextStyle $textStyle
-     *              The axis' text style
+     *              The axis' text style.
      * @param $int $minValue
      *              The lowest value.
      * @param $int $maxValue
@@ -79,7 +79,8 @@ class Axis extends OptionStorage {
      * Sets the axis' baseline.
      *
      * @param int $baseline
-     *              The baseline's position.
+     *              The baseline's position. If set to null, the default position
+     *              will be used.
      */
     public function setBaseline($baseline) {
         $this->setOptionNumeric("baseline", $baseline);
@@ -98,14 +99,15 @@ class Axis extends OptionStorage {
     }
 
     /**
-     * Sets the direction in which the axis' values grow
+     * Sets the direction in which the axis' values grow.
      *
      * @param int $direction
      *              The direction. Must be -1 for reverse order or 1 for normal
      *              order. If set to null, the normal order will be used.
      */
     public function setDirection($direction) {
-        $this->setOptionNumeric("direction", $direction);
+        if ($direction == -1 || $direction == 1 ||$direction == null)
+            $this->setOptionNumeric("direction", $direction);
     }
 
     /**
@@ -127,14 +129,14 @@ class Axis extends OptionStorage {
      * Sets the appearance of the gridlines.
      *
      * @param Gridlines $gridlines
-     *              The gridlines
+     *              The gridlines. If set to null, the default appearance is used.
      */
     public function setGridlines(Gridlines $gridlines) {
         $this->setOption("gridlines", $gridlines);
     }
 
     /**
-     * Sets if the axis will use a logarithmic sacle.
+     * Sets if the axis will use a logarithmic scale.
      *
      * @param boolean $loc
      *              If set to true, a logarithmic scale will be used.
@@ -167,7 +169,7 @@ class Axis extends OptionStorage {
      * Sets the text style of the axis' labels.
      *
      * @param TextStyle $name
-     *              The text style.
+     *              The text style. If set to null, the default style will be used.
      */
     public function setTextStyle(TextStyle $style) {
         $this->setOption("textStyle", $style);
@@ -177,7 +179,8 @@ class Axis extends OptionStorage {
      * Sets the axis' title.
      *
      * @param string $title
-     *              The title that will be displayed near the axis.
+     *              The title that will be displayed near the axis. If se to null,
+     *              no title will be displayed.
      */
     public function setTitle($title) {
         $this->setOption("title", $title);
@@ -187,17 +190,18 @@ class Axis extends OptionStorage {
      * Sets the text style of the axis' title.
      *
      * @param TextStyle $name
-     *              The text style.
+     *              The text style. If set to null, the default style will be used.
      */
     public function setTitleTextStyle(TextStyle $style) {
         $this->setOption("titleTextStyle", $style);
     }
 
     /**
-     * Sets the axis' highes visible value.
+     * Sets the axis' highest visible value.
      *
      * @param float $max
-     *              The highest value.
+     *              The highest value. If set to null, the value will be calculated
+     *              automatically.
      */
     public function setMaxValue($max) {
         $this->setOptionNumeric("maxValue", $max);
@@ -207,7 +211,8 @@ class Axis extends OptionStorage {
      * Sets the axis' lowest visible value.
      *
      * @param float $max
-     *              The lowest value.
+     *              The lowest value. If set to null, the value will be calculated
+     *              automatically.
      */
     public function setMinValue($min) {
         $this->setOptionNumeric("minValue", $min);
@@ -218,7 +223,7 @@ class Axis extends OptionStorage {
      *
      * @param string $mode
      *              The mode used to render the data points. Must be on of the
-     *              <i>VIEW_WINDOW_...</i> constants.
+     *              <i>VIEW_WINDOW_...</i> constants or null.
      * @throws \InvalidArgumentException
      *              Thrown, if the given mode is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -238,6 +243,7 @@ class Axis extends OptionStorage {
      * {@link VIEW_MODE_EXPLICIT}.
      *
      * @param ViewWindow $window
+     *              The view window. If set to null, no view window is defined.
      */
     public function setViewWindow(ViewWindow $window) {
         $this->setOption("viewWindow", $window);

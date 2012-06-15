@@ -29,16 +29,16 @@ namespace googlecharttools\view\options;
 
 /**
  * The Animation class specifies the animation that will be shown when the chart is
- * redrawn.
+ * re-drawn.
  *
  * @package view
  * @subpackage options
  */
 class Animation extends OptionStorage {
+
     /**
      * Constant animation speed.
      */
-
     const EASING_LINEAR = "linear";
 
     /**
@@ -60,10 +60,10 @@ class Animation extends OptionStorage {
      * Creates a new Animation option-set
      *
      * @param int $duration
-     *              The animation duration. In milliseconds.
+     *              The animation duration in milliseconds.
      * @param string $easing
-     *              The easing function used for the animation. Must be on of th
-     *              <i>EASING_...</i> constants.
+     *              The easing function used for the animation. Must be on of the
+     *              <i>EASING_...</i> constants or null.
      * @throws \InvalidArgumentException
      *              Thrown, if the given position is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -77,11 +77,12 @@ class Animation extends OptionStorage {
      * Sets the animation duration.
      *
      * @param int $duration
-     *              The animation duration. In milliseconds. If set to null,
-     *              no animation will be used.
+     *              The animation duration in milliseconds. Must be greater or
+     *              equal than "0". If set to null, no animation will be used.
      */
     public function setDuration($duration) {
-        $this->setOptionNumeric("duration", $duration);
+        if ($duration >= 0 || $duration == null)
+            $this->setOptionNumeric("duration", $duration);
     }
 
     /**

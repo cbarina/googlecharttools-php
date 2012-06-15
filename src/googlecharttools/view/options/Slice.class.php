@@ -28,7 +28,7 @@
 namespace googlecharttools\view\options;
 
 /**
- * The Slice defines the color and text style of a single slice in a pie chart.
+ * The Slice defines the color and text style of a single slice in a {@link PieChart}.
  *
  * @package view
  * @subpackage options
@@ -36,12 +36,12 @@ namespace googlecharttools\view\options;
 class Slice extends OptionStorage {
 
     /**
-     * Creates a new TextStyle option-set.
+     * Creates a new Slice option-set.
      *
      * @param string $color
      *              The slice's color. Any valid HTML/CSS color definition
      *              (e. g. "white", #FFF, #123456).
-     * @param TextStyle $fontName
+     * @param TextStyle $textStyle
      *              The slice's individual text style
      */
     public function __construct($color = null, TextStyle $textStyle = null) {
@@ -50,13 +50,12 @@ class Slice extends OptionStorage {
     }
 
     /**
-     * Sets the font's color.
+     * Sets the slice's color.
      *
      * Any valid HTML/CSS color definition can be used (e. g. "white", #FFF, #123456).
      *
      * @param string $color
-     *              HTML color string. If set to null, the default color
-     *              assigned to the outer element will be used.
+     *              HTML color string. If set to null, the default color will be used.
      */
     public function setColor($color) {
         $this->setOption("color", $color);

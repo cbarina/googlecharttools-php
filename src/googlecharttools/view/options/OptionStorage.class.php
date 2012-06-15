@@ -40,9 +40,9 @@ abstract class OptionStorage {
      * Gets an option's value
      *
      * @param string $name
-     *              The name of the option to get the value for
+     *              The name of the option to get the value for.
      * @return mixed
-     *              The option's value. Might be null, if option is not set
+     *              The option's value. Is null, if option is not set.
      */
     public function getOption($name) {
         if (key_exists($name, $this->options)) {
@@ -56,17 +56,17 @@ abstract class OptionStorage {
      * Sets an option to a given value.
      *
      * This allows to set additional options that are currently not supported by the set-methods.
-     * Howevever, you should always use on of the other set-methods if possible.
+     * However, you should always use on of the other set-methods if possible.
      *
      * Through this method, additional option-code can be added to the generated
      * JavaScript-code. This is usefull, when options should be set that are
      * currently not directly supported by this API (through set...() methods).
      *
      * @param string $name
-     *              The option's name
+     *              The option's name.
      * @param string $value
      *              The option's value. If set to null, the option
-     *              will be removed
+     *              will be removed.
      */
     public function setOption($name, $value) {
         if ($value !== null) {
@@ -83,10 +83,10 @@ abstract class OptionStorage {
      * However, only boolean values are accepted.
      *
      * @param string $name
-     *              The option's name
+     *              The option's name.
      * @param boolean $value
      *              The option's value. If set to null, the option
-     *              will be removed
+     *              will be removed.
      */
     public function setOptionBoolean($name, $value) {
         if (is_bool($value) || $value == null) {
@@ -101,10 +101,10 @@ abstract class OptionStorage {
      * However, only numeric values are accepted.
      *
      * @param string $name
-     *              The option's name
+     *              The option's name.
      * @param number $value
      *              The option's value. If set to null, the option
-     *              will be removed
+     *              will be removed.
      */
     public function setOptionNumeric($name, $value) {
         if (is_numeric($value) || $value == null) {
@@ -119,10 +119,10 @@ abstract class OptionStorage {
      * However, only array values are accepted.
      *
      * @param string $name
-     *              The option's name
+     *              The option's name.
      * @param string[] $value
      *              The option's value. If set to null, the option
-     *              will be removed
+     *              will be removed.
      */
     public function setOptionArray($name, $value) {
         if (is_array($value) || $value == null) {
@@ -134,20 +134,20 @@ abstract class OptionStorage {
      * Encodes the set options into a JSON-object
      *
      * @return string
-     *              Encoded options
+     *              Encoded options.
      */
     protected function encodeOptions() {
         return $this->encodeArrayToJson($this->options);
     }
 
     /**
-     * Encodes a array into a JSON-string
+     * Encodes an array into a JSON-object or array.
      *
      * @param mixed[] $array
-     *              Array, the data is stored in
+     *              The array, the data is stored in
      * @param boolean $asObject
-     *              If set to true, the data will be encoded as an JS object.
-     *              Otherwise its encoded as an array.
+     *              If set to true, the data will be encoded as an JSON-object.
+     *              Otherwise its encoded as a JSON-array.
      * @return string
      *              The encoded data.
      */

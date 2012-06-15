@@ -69,7 +69,8 @@ class TextStyle extends OptionStorage {
      * Sets the font-type.
      *
      * @param int $name
-     *              The font type's name.
+     *              The font type's name. If set to null, the default font
+     *              assigned to the outer element will be used.
      */
     public function setFontName($name) {
         $this->setOption("fontName", $name);
@@ -79,7 +80,8 @@ class TextStyle extends OptionStorage {
      * Sets the font's size.
      *
      * @param int $size
-     *              The font size in pixels.
+     *              The font size in pixels. If set to null, the default size
+     *              assigned to the outer element will be used.
      */
     public function setFontSize($size) {
         $this->setOption("fontSize", $size);

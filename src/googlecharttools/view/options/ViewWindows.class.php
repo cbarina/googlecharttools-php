@@ -52,7 +52,8 @@ class ViewWindow extends OptionStorage {
      * Sets the highest visible value.
      *
      * @param float $max
-     *              The highest visible value.
+     *              The highest visible value. If set to null, the value will
+     *              be calculated automatically.
      */
     public function setMax($max) {
         $this->setOptionNumeric("max", $max);
@@ -62,7 +63,8 @@ class ViewWindow extends OptionStorage {
      * Sets the highest visible value.
      *
      * @param float $max
-     *              The highest visible value.
+     *              The highest visible value. If set to null, the value will
+     *              be calculated automatically.
      */
     public function setMin($min) {
         $this->setOptionNumeric("min", $min);

@@ -30,7 +30,7 @@ namespace googlecharttools\view\options;
 /**
  * The HAxis defines the appearance of the chart's horizontal axis.
  *
- * The option set in this option-set are only valid in discrete charts.
+ * The options set in this option-set are only valid in discrete charts.
  *
  * @package view
  * @subpackage options
@@ -51,7 +51,7 @@ class HAxis extends Axis {
     /**
      * Sets the horizontal axis' label angel.
      *
-     * Is only valid, if {@link setSlantedText} is set to true.
+     * Is only valid, if {@link setSlantedText()} is set to true.
      *
      * @param int $angle
      *              The angle used to display the label in deg. If set to null,
@@ -82,7 +82,7 @@ class HAxis extends Axis {
      *              label will be displayed. Must be greater or equal than "1".
      */
     public function setShowTextEvery($every) {
-        if ($every >= 1) {
+        if ($every >= 1 || $every == null) {
             $this->setOptionNumeric("showTextEvery", $every);
         }
     }

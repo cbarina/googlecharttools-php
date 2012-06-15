@@ -28,7 +28,7 @@
 namespace googlecharttools\view\options;
 
 /**
- * The SizeAxis is used to map the bubble chart's elements to their size.
+ * The SizeAxis is used to map the chart's elements according to their size to the size axis.
  *
  * @package view
  * @subpackage options
@@ -36,7 +36,7 @@ namespace googlecharttools\view\options;
 class SizeAxis extends OptionStorage {
 
     /**
-     * Creates a new SizeAxis option-set
+     * Creates a new SizeAxis option-set.
      *
      * @param int $minSize
      *              The minimum size in pixels.
@@ -68,7 +68,8 @@ class SizeAxis extends OptionStorage {
      * Sets the minimum value for the elements' size.
      *
      * @param int $min
-     *              The minimum value.
+     *              The minimum value. If set to null, the minimum value set in
+     *              the size column will be used.
      */
     public function setMinValue($min) {
         $this->setOptionNumeric("minValue", $min);
@@ -88,7 +89,8 @@ class SizeAxis extends OptionStorage {
      * Sets the maximum value for the elements' color.
      *
      * @param int $min
-     *              The maximum value.
+     *              The maximum value. If set to null, the maximum value set in
+     *              the size column will be used.
      */
     public function setMaxValue($min) {
         $this->setOptionNumeric("minValue", $min);
