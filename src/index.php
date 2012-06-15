@@ -16,7 +16,10 @@
  */
 
 /**
- * Examples showing how to create charts with this API
+ * This scipts draws a example chart from each chart listed at Google's
+ * {@link https://google-developers.appspot.com/chart/interactive/docs/gallery ChartGallery}.
+ *
+ * This shows how to integrate the API into own pages and how to use it.
  *
  * @author Patrick Strobel
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0

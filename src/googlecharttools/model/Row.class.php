@@ -27,11 +27,11 @@
 namespace googlecharttools\model;
 
 /**
- * A Row represents a data entry (a row) in the data table.
+ * A Row represents a data entry (a row) of the {@link DataTable}.
  *
  * Each row contains one or more {@link Cell}s that stores the actual data of
  * this row. The cells of each row have to match the {@link Column} definition.
- * {@link Column} and {@link Cell} are connected together by the order they
+ * {@link Column} and {@link Cell} are connected by the order they
  * are added to the {@link DataTable} and {@link Row}, respectively.
  * That is, the {@link Cell} added first belongs to the {@link Column} definition
  * that has been added first, the second-added {@link Cell} to the second-added
@@ -70,7 +70,7 @@ class Row {
     }
 
     /**
-     * Gets the number of cells that have been added to the row.
+     * Gets the number of cells that have been added to this row.
      *
      * @return int
      *              Number of cells.
@@ -80,17 +80,17 @@ class Row {
     }
 
     /**
-     * Converts this object into a JSON representation.
+     * Converts this object into a JSON-object.
      *
      * This representation follows the JavaScript literal format specified
-     * on {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
-     * as element of the "row" JavaScript array.
+     * at {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
+     * as element of the "row" JSON-array.
      *
      * @param Column[] $cols
-     *              The {@link DataTable}s columns (used to convert the
-     *              cell's value into a proper output format)
+     *              The {@link DataTable}'s columns (used to convert the
+     *              cells' value into the proper output format).
      * @return string
-     *              The JSON representation of this Row
+     *              The JSON representation of this Row.
      */
     public function toJsonstring($cols) {
         $string = "{\"c\": [";

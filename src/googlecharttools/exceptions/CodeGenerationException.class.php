@@ -28,7 +28,7 @@ namespace googlecharttools\exceptions;
 
 /**
  * A CodeGenerationException will be thrown whenever the generation of JavaScript
- * code failes.
+ * code fails.
  *
  * @package exceptions
  */

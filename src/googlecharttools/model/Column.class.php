@@ -29,8 +29,8 @@ namespace googlecharttools\model;
 /**
  * A Column stores the definition of one column of the {@link DataTable}.
  *
- * For each column that will be used in the data of the DataTable, a column-definiton
- * has to be added to the DataTable.
+ * For each column that will be used in the data of the {@link DataTable}, a
+ * column-definiton has to be added to the DataTable.
  *
  * Please visit Google's API documentation at
  * {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
@@ -60,25 +60,25 @@ class Column {
     private $properties;
 
     /**
-     * Creates a new column.
+     * Creates a new Column.
      *
      * @param string $type
-     *              Used to define the data type of all cells that will added to
-     *              this column. Has to be one of the <i>TYPE_...</i> constants
+     *              Used to define the data type of all cells that will be added to
+     *              this column. Has to be one of the <i>TYPE_...</i> constants.
      * @param string $id
      *              A unique identifier used to access the column (no two columns
-     *              in the same DataTable must have the same ID). As this will be
-     *              passed directly to the JavaScript API, please make sure
-     *              that you do not use a JavaScript keyword.
+     *              in the same {@link DataTable} are allowed to have the same ID).
+     *              As this will be passed directly to the JavaScript API, please
+     *              make sure that you do not use a JavaScript keyword.
      * @param string $label
-     *              The column's label. This will be displayed on some charts.
+     *              The column's label. This will be displayed on most charts.
      * @param string $properties
      *              Any additional properties that will be used by some chart types.
-     *              This is typically used to specifiy the columns role, so that
+     *              This is typically used to specifiy the column's role, so that
      *              the data in this column will, for example, be used for annotations
      *              (when set to <i>{"role": "annotation"}</i> in this case).
      *              See {@link https://google-developers.appspot.com/chart/interactive/docs/roles}
-     *              for more information on the different roles.
+     *              for more information about different roles.
      * @throws \InvalidArgumentException
      *              Thrown, if the given type is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -91,54 +91,94 @@ class Column {
     }
 
     /**
-     * Gets the data type of all cells added in this column
-     *
-     * @return string
-     *              The column's type. One of the <i>TYPE_...</i> constants
-     */
-    public function getType() {
-        return $this->type;
-    }
-
-    /**
      * Gets the column's ID.
      *
      * @return string
-     *              The column's ID or null, if no ID has been set
+     *              The column's ID or null, if no ID has been set.
      */
     public function getId() {
         return $this->id;
     }
 
     /**
-     * Gets the column's label
+     * Gets the column's label.
      *
      * @return string
-     *              The column's label or null, if no label has been set
+     *              The column's label or null, if no label has been set.
      */
     public function getLabel() {
         return $this->label;
     }
 
     /**
-     * Gets the properties that have been added to the column
+     * Gets the properties that have been added to the column.
      *
      * @return string
-     *              The column's properties as JavaScript objects or null, if no
-     *              properties have been set
+     *              The column's properties as JavaScript/JSON-objects or null, if no
+     *              properties have been set.
      */
     public function getProperties() {
         return $this->properties;
     }
 
     /**
+     * Gets the data type of all {@link Cell}s added in this column.
+     *
+     * @return string
+     *              The column's type. One of the <i>TYPE_...</i> constants.
+     */
+    public function getType() {
+        return $this->type;
+    }
+
+    /**
+     * Set's the column's ID.
+     *
+     * @param string $id
+     *              A unique identifier used to access the column (no two columns
+     *              in the same DataTable are allowed to have the same ID). As this
+     *              will be passed directly to the JavaScript API, please make sure
+     *              that you do not use a JavaScript keyword.
+     */
+    public function setId($id) {
+        $this->id = $id;
+    }
+
+    /**
+     * Set's the columns label.
+     *
+     * @param string $label
+     *              The label will be displayed on most charts.
+     */
+    public function setLabel($label) {
+        $this->label = $label;
+    }
+
+    /**
+     * Set's the columns properties.
+     *
+     *
+     * @param string $properties
+     *              Any additional properties that will be used by some chart types.
+     *              This is typically used to specifiy the column's role, so that
+     *              the data in this column will, for example, be used for annotations
+     *              (when set to <i>{"role": "annotation"}</i> in this case).
+     *              See {@link https://google-developers.appspot.com/chart/interactive/docs/roles}
+     *              for more information on different roles.
+     *
+     */
+    public function setProperties($properties) {
+        $this->properties = $properties;
+    }
+
+    /**
      * Sets the column's type.
      *
-     * The type defines what data types are added to this column by the {@link Cell}s
+     * The type defines what data types are added to this column by the {@link Cell}s.
      *
      * @param string $type
      *              Used to define the data type of all cells that will added in
-     *              this column. Has to be one of the <i>TYPE_...</i> constants
+     *              this column. Has to be one of the <i>TYPE_...</i> constants.
      * @throws \InvalidArgumentException
      *              Thrown, if the given type is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -153,54 +193,14 @@ class Column {
     }
 
     /**
-     * Set's the column's ID.
-     *
-     * @param string $id
-     *              A unique identifier used to access the column (no two columns
-     *              in the same DataTable must have the same ID). As this will be
-     *              passed directly to the JavaScript API, please make sure
-     *              that you do not use a JavaScript keyword.
-     */
-    public function setId($id) {
-        $this->id = $id;
-    }
-
-    /**
-     * Set's the columns label.
-     *
-     * @param string $label
-     *              The label will be displayed on some charts.
-     */
-    public function setLabel($label) {
-        $this->label = $label;
-    }
-
-    /**
-     * Set's the columns properties.
-     *
-     *
-     * @param string $properties
-     *              Any additional properties that will be used by some chart types.
-     *              This is typically used to specifiy the columns role, so that
-     *              the data in this column will, for example, be used for annotations
-     *              (when set to <i>{"role": "annotation"}</i> in this case).
-     *              See {@link https://google-developers.appspot.com/chart/interactive/docs/roles}
-     *              for more information on the different roles.
-     *
-     */
-    public function setProperties($properties) {
-        $this->properties = $properties;
-    }
-
-    /**
-     * Converts this object into a JSON representation.
+     * Converts this object into a JSON-object.
      *
      * This representation follows the JavaScript literal format specified
-     * on {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
-     * as element of the "cols" JavaScript array.
+     * at {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
+     * as element of the "cols" JSON-array.
      *
      * @return string
-     *              The JSON representation of this Column
+     *              The JSON representation of this Column.
      */
     public function toJsonstring() {
         $string = "{\"type\": \"" . $this->type . "\"";

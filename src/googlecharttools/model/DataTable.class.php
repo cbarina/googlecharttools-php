@@ -31,7 +31,7 @@ namespace googlecharttools\model;
  * Google Chart Tools uses a table-format as data-storage. The actual function
  * of the table's head and cells depends on the chart the data is used for (e. g. in
  * pie-charts, a table with two rows is used where the first column represents
- * the slice's label. The second column is used as the slice's value).
+ * the slices' label. The second column is used as the slices' value).
  *
  * The DataTable is divided into a column-definition (the table's header) and
  * rows. By the column definition, the column's value-type (string, number, etc.)
@@ -81,7 +81,7 @@ namespace googlecharttools\model;
  *
  * You will find detailed information on how many columns are supported by a specific
  * chart, their purpose etc. in detail at the corresponding chart's subpage
- * published on {@link https://google-developers.appspot.com/chart/interactive/docs/gallery}.
+ * published at {@link https://google-developers.appspot.com/chart/interactive/docs/gallery}.
  *
  * @package model
  */
@@ -104,13 +104,13 @@ class DataTable {
     }
 
     /**
-     * Adds a new row to the table
+     * Adds a new data-row to the table.
      *
      * @param Row $row
-     *              The new row
+     *              The new row.
      * @throws \InvalidArgumentException
      *              Thrown, if the row has more cells than column definitions
-     *              have been added by the {@link addColumn()} method
+     *              have been added with the {@link addColumn()} method.
      */
     public function addRow(Row $row) {
         if ($row->getCellsCount() > $this->getColumnsCount()) {
@@ -122,13 +122,13 @@ class DataTable {
     /**
      * Fills the DataTable by reading an associative array.
      *
-     * Thereby, every element of the array will be seen as a new row whereby the
-     * array's keys will be are used for the first column and the array's value
+     * Every element of the array will be seen as a new row whereby the
+     * array's keys are used for the first column and the array's values
      * for the second column. Thus, this will require a DataTable with two columns
      * only.
      *
      * @param string[] $array
-     *              Associative array.
+     *              An associative array.
      */
     public function addRowsAssocArray($array) {
         foreach ($array as $key => $value) {
@@ -140,45 +140,53 @@ class DataTable {
     }
 
     /**
-     * Gets the number of columns that have been added to the data table
-     * @return int  Number of columns added by {@link addColumn()}
+     * Gets the number of columns that have been added to the DataTable.
+     *
+     * @return int
+     *              Number of columns added with {@link addColumn()}.
      */
     public function getColumnsCount() {
         return count($this->cols);
     }
 
     /**
-     * Gets the number of rows that have been added to the data table
-     * @return int  Number of rows added by {@link addRow()}
+     * Gets the number of rows that have been added to the DataTable.
+     *
+     * @return int
+     *              Number of rows added with {@link addRow()}.
      */
     public function getRowsCount() {
         return count($this->rows);
     }
 
     /**
-     * Gets all columns that have been added to the data table
-     * @return Column[]    The data table's columns
+     * Gets all columns that have been added to the DataTable.
+     *
+     * @return Column[]
+     *              The DataTable's columns.
      */
     public function getColumns() {
         return $this->cols;
     }
 
     /**
-     * Gets all rows that have been added to the data table
-     * @return Row[]   The data table's rows
+     * Gets all rows that have been added to the DataTable.
+     *
+     * @return Row[]
+     *              The DataTable's rows.
      */
     public function getRows() {
         return $this->rows;
     }
 
     /**
-     * Converts this object into a JSON representation.
+     * Converts this object into a JSON-object.
      *
      * This representation follows the JavaScript literal format specified
-     * on {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}.
+     * at {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}.
      *
      * @return string
-     *              The JSON representation of this DataTable
+     *              The JSON representation of this DataTable.
      */
     public function toJsonObject() {
         $json = "{\n";

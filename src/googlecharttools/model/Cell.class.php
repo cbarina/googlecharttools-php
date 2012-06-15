@@ -29,11 +29,11 @@ namespace googlecharttools\model;
 use googlecharttools\model\Column;
 
 /**
- * A Cell stores the data of one cell of the {@link DataTable}.
+ * A Cell stores the data for one cell in the {@link DataTable}.
  *
  * Various cells are grouped together in a {@link Row}.
  *
- * Please visit Google's API documentation on
+ * Please visit Google's API documentation at
  * {@link https://google-developers.appspot.com/chart/interactive/docs/reference#cell_object}
  * for detailed background information.
  *
@@ -51,23 +51,23 @@ class Cell {
     private $properties;
 
     /**
-     * Creates a new cell.
+     * Creates a new Cell.
      *
      * @param mixed $value
-     *              The cells value, that will be used to render the chart.
-     *              If $formatted is not set, this will be displayed, too.
-     *              This parameter's data type depends on the {@link Column} this
-     *              cell belongs to:
+     *              The cell's value, that will be used when the chart is drawn.
+     *              If $formatted is not set, this value will be displayed, too.
+     *              This parameter's data type depends on the {@link Column}'s type
+     *              this cell belongs to:
      *              <ul>
-     *                  <li>{@link Column::TYPE_BOOLEAN}: Boolean</li>
-     *                  <li>{@link Column::TYPE_NUMBER}: Integer</li>
-     *                  <li>{@link Column::TYPE_STRING}: string or number</li>
+     *                  <li>{@link Column::TYPE_BOOLEAN}: Value must be a boolean.</li>
+     *                  <li>{@link Column::TYPE_NUMBER}: Value must be an integer</li>
+     *                  <li>{@link Column::TYPE_STRING}: Value must be a string or a number</li>
      *                  <li>{@link Column::TYPE_DATE} and {@link Column::TYPE_DATETIME}:
-     *                      A PHP timestamp (will be converted into a JavaScript
+     *                      Value must be a PHP timestamp (will be converted into a JavaScript
      *                      date-object automatically)</li>
-     *                  <li>{@link Column::TYPE_TIMEOFDAY}: Array with three or
-     *                      four elements (in this sequence): Hour, minute, second
-     *                      [, millisecond]</li>
+     *                  <li>{@link Column::TYPE_TIMEOFDAY}: Value must be an array
+     *                      with three or four elements (in this sequence):
+     *                      <i>Hour, minute, second [, millisecond]</i></li>
      *               </ul>
      * @param string $formatted
      *              If specified, this value will be displayed instead of $value.
@@ -82,7 +82,7 @@ class Cell {
     }
 
     /**
-     * Gets the cell's value
+     * Gets the cell's value.
      *
      * @return mixed
      *              The cells value. The actual type depends on the {@link Column}
@@ -93,51 +93,29 @@ class Cell {
     }
 
     /**
-     * Gets the cell's formatted value
+     * Gets the cell's formatted value.
      *
      * @return string
-     *              The formatted value or null, if no formatted value has been set
+     *              The formatted value or null, if no formatted value has been set.
      */
     public function getFormatted() {
         return $this->formatted;
     }
 
     /**
-     * Gets the cell's properties
+     * Gets the cell's properties.
+     *
      * @return string
-     *              Any additional properties that have been addded to the cell
+     *              Any additional properties that have been added to the cell.
      */
     public function getProperties() {
         return $this->properties;
     }
 
     /**
-     * Sets the cell's value
-     *
-     * @param mixed $value
-     *              The cells value, that will be used to render the chart.
-     *              If $formatted is not set, this will be displayed, too.
-     *              The parameter's data type depends on the {@link Column} this
-     *              cell belongs to:
-     *              <ul>
-     *                  <li>{@link Column::TYPE_BOOLEAN}: Boolean</li>
-     *                  <li>{@link Column::TYPE_NUMBER}: Integer</li>
-     *                  <li>{@link Column::TYPE_STRING}: string or number</li>
-     *                  <li>{@link Column::TYPE_DATE} and {@link Column::TYPE_DATETIME}:
-     *                      A PHP timestamp (will be converted into a JavaScript
-     *                      date-object automatically)</li>
-     *                  <li>{@link Column::TYPE_TIMEOFDAY}: Array with three or
-     *                      four elements (in this squence): Hour, minute, seconds
-     *                      [, milliseconds]</li>
-     *               </ul>
-     */
-    public function setValue($value) {
-        $this->value = $value;
-    }
-
-    /**
      * Sets the cell's formatted value.
-     * If not set, the cell's value will be displayed
+     *
+     * If not set, the cell's value will be displayed.
      *
      * @param string $formatted
      *              If specified, this value will be displayed instead of the cells value.
@@ -150,7 +128,7 @@ class Cell {
     /**
      * Sets the cell's properties.
      *
-     * @param type $properties
+     * @param string $properties
      *              Any additional properties that will be used by some chart types.
      */
     public function setProperties($properties) {
@@ -158,18 +136,42 @@ class Cell {
     }
 
     /**
-     * Converts this object into a JSON representation.
+     * Sets the cell's value.
+     *
+     * @param mixed $value
+     *              The cell's value, that will be used when the chart is drawn.
+     *              If $formatted is not set, this value will be displayed, too.
+     *              This parameter's data type depends on the {@link Column}'s type
+     *              this cell belongs to:
+     *              <ul>
+     *                  <li>{@link Column::TYPE_BOOLEAN}: Value must be a boolean.</li>
+     *                  <li>{@link Column::TYPE_NUMBER}: Value must be an integer</li>
+     *                  <li>{@link Column::TYPE_STRING}: Value must be a string or a number</li>
+     *                  <li>{@link Column::TYPE_DATE} and {@link Column::TYPE_DATETIME}:
+     *                      Value must be a PHP timestamp (will be converted into a JavaScript
+     *                      date-object automatically)</li>
+     *                  <li>{@link Column::TYPE_TIMEOFDAY}: Value must be an array
+     *                      with three or four elements (in this sequence):
+     *                      <i>Hour, minute, second [, millisecond]</i></li>
+     *               </ul>
+     */
+    public function setValue($value) {
+        $this->value = $value;
+    }
+
+    /**
+     * Converts this object into a JSON-object.
      *
      * This representation follows the JavaScript literal format specified
-     * on {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
-     * as element of an entry of the "row" JavaScript array.
+     * at {@link https://google-developers.appspot.com/chart/interactive/docs/reference#dataparam}
+     * as an element of the "row" JSON-array.
      *
      * @param string $type
      *              The cells type that has been set in the corresponding
      *              {@link Column} (used to convert the
-     *              cell's value into a proper output format)
+     *              cell's value into the proper output format).
      * @return string
-     *              The JSON representation of this Cell
+     *              The JSON representation of this Cell.
      */
     public function toJsonString($type) {
         $string = "{\"v\": ";
