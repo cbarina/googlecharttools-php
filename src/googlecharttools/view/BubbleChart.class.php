@@ -76,7 +76,7 @@ class BubbleChart extends CartesianChart {
      *              automatically.
      */
     public function setSizeAxis(SizeAxis $axis) {
-        $this->setOption("colorAxis", $axis);
+        $this->setOption("sizeAxis", $axis);
     }
 
     /**

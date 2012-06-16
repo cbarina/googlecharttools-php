@@ -58,7 +58,8 @@ use googlecharttools\view\options\Tooltip;
 
 error_reporting(E_ALL);
 require_once("./googlecharttools/ClassLoader.class.php");
-googlecharttools\ClassLoader::register();
+
+
 
 // Prepare data
 // ------------
@@ -642,7 +643,7 @@ $marketData->addRow($rowZair);
 // --------------
 $manager = new ChartManager();
 
-// Default charts
+// Default charts from the Chart Gallery
 $companyYearAxis = new Axis("year", new TextStyle("red"));
 
 $areaChart = new AreaChart("companyArea", $companyData);
@@ -685,7 +686,7 @@ $markersGeoChart = new GeoChart("markersGeo", $cityData);
 $markersGeoChart->setRegion("IT");
 $markersGeoChart->setDisplayMode(GeoChart::MODE_MARKERS);
 $markersColorAxis = new ColorAxis();
-$markersColorAxis->setColor(array("green", "blue"));
+$markersColorAxis->setColors(array("green", "blue"));
 $markersGeoChart->setColorAxis($markersColorAxis);
 
 $lineChart = new LineChart("companyLine", $companyData);
@@ -716,6 +717,7 @@ $treeMap->setHeaderHeight(15);
 $treeMap->setFontColor("black");
 $treeMap->setShowScale(true);
 
+// Add generated chars to the chart manager
 $manager->addChart($areaChart);
 $manager->addChart($barChart);
 $manager->addChart($bubbleChart);

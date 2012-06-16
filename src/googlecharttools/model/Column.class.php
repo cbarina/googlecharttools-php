@@ -202,7 +202,7 @@ class Column {
      * @return string
      *              The JSON representation of this Column.
      */
-    public function toJsonstring() {
+    public function toJson() {
         $string = "{\"type\": \"" . $this->type . "\"";
         if ($this->id != null) {
             $string .= ", \"id\": \"" . $this->id . "\"";

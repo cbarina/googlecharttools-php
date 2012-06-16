@@ -92,7 +92,7 @@ class Row {
      * @return string
      *              The JSON representation of this Row.
      */
-    public function toJsonstring($cols) {
+    public function toJson($cols) {
         $string = "{\"c\": [";
 
         $first = true;
@@ -103,7 +103,7 @@ class Row {
                 $string .= ", ";
             }
 
-            $string .= $cell->toJsonString($cols[$i]->getType());
+            $string .= $cell->toJson($cols[$i]->getType());
         }
 
         $string .= "]}";

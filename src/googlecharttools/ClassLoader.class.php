@@ -17,6 +17,9 @@
  */
 
 /**
+ * By including this file, all classes in this API will be loaded/included automatically
+ * when they are "called" by the new-statement.
+ * 
  * @author Patrick Strobel
  * @license http://www.apache.org/licenses/LICENSE-2.0  Apache License, Version 2.0
  * @link http://code.google.com/p/googlecharttools-php
@@ -25,6 +28,8 @@
  */
 
 namespace googlecharttools;
+
+ClassLoader::register();
 
 /**
  * The class loader is used to automatically load classes that are requested

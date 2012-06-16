@@ -47,7 +47,7 @@ abstract class ContinuousChart extends CartesianChart {
      *              the chart type.
      */
     public function setLineWidth($width) {
-        if ($width >= 0) {
+        if ($width >= 0 || $width == null) {
             $this->setOptionNumeric("lineWidth", $width);
         }
     }
@@ -62,7 +62,7 @@ abstract class ContinuousChart extends CartesianChart {
      *              the chart type
      */
     public function setPointSize($size) {
-        if ($size >= 0) {
+        if ($size >= 0 || $size == null) {
             $this->setOptionNumeric("pointSize", $size);
         }
     }

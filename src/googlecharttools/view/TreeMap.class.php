@@ -66,7 +66,7 @@ class TreeMap extends Chart {
      *              to null, "0" will be used.
      */
     public function setHeaderHeight($height) {
-        if ($height >= 0) {
+        if ($height >= 0 || $height == null) {
             $this->setOptionNumeric("headerHeight", $height);
         }
     }
@@ -273,11 +273,11 @@ class TreeMap extends Chart {
     /**
      * Sets the font.
      *
-     * @param int $size
-     *              Font size in pixels. If set to null, the default size will be used
+     * @param string $size
+     *              Font familiy's name. If set to null, the default font familiy will be used.
      */
     public function setFontFamily($family) {
-        $this->setOptionNumeric("fontFamily", $family);
+        $this->setOption("fontFamily", $family);
     }
 
     /**

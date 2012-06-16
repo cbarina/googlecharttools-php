@@ -62,8 +62,8 @@ class Bubble extends OptionStorage {
      *              fully opaque.
      */
     public function setOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
-            $this->setOptionNumeric("areaOpacity", $opacity);
+        if ($opacity >= 0.0 && $opacity <= 1.0 || $opacity == null) {
+            $this->setOptionNumeric("opacity", $opacity);
         }
     }
 

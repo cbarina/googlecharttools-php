@@ -36,7 +36,7 @@ namespace googlecharttools\view\options;
 class ColorAxis extends OptionStorage {
 
     /**
-     * Creates a new ColorAxis option-set
+     * Creates a new ColorAxis option-set.
      *
      * @param int $minValue
      *              The minimum value.
@@ -77,7 +77,7 @@ class ColorAxis extends OptionStorage {
      *              used.
      */
     public function setMaxValue($min) {
-        $this->setOptionNumeric("minValue", $min);
+        $this->setOptionNumeric("maxValue", $min);
     }
 
     /**
@@ -97,7 +97,7 @@ class ColorAxis extends OptionStorage {
      *              An array of colors. Each element must be a valid HTML color
      *              string.
      */
-    public function setColor($colors) {
+    public function setColors($colors) {
         $this->setOptionArray("colors", $colors);
     }
 

@@ -173,7 +173,7 @@ class Cell {
      * @return string
      *              The JSON representation of this Cell.
      */
-    public function toJsonString($type) {
+    public function toJson($type) {
         $string = "{\"v\": ";
 
         // Convert value to correct output according to the column's type

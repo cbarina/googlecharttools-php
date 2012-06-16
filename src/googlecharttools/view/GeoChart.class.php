@@ -189,7 +189,7 @@ class GeoChart extends Chart {
      *              fully opaque. If set to null, the default opacity will be used.
      */
     public function setMarkerOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
+        if ($opacity >= 0.0 && $opacity <= 1.0 || $opacity == null) {
             $this->setOptionNumeric("markerOpacity", $opacity);
         }
     }
@@ -220,7 +220,7 @@ class GeoChart extends Chart {
      *              automatically.
      */
     public function setSizeAxis(SizeAxis $axis) {
-        $this->setOption("colorAxis", $axis);
+        $this->setOption("sizeAxis", $axis);
     }
 
     /**

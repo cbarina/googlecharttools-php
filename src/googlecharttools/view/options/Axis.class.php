@@ -162,7 +162,7 @@ class Axis extends OptionStorage {
                 $position != self::TEXT_POSITION_OUT) {
             throw new \InvalidArgumentException("Argument \"position\" is invalid");
         }
-        $this->setOption("position", $position);
+        $this->setOption("textPosition", $position);
     }
 
     /**

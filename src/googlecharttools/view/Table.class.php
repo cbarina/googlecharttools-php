@@ -132,7 +132,7 @@ class Table extends Chart {
      *              Number of rows per page.
      */
     public function setPageSize($size) {
-        if ($size >= 1) {
+        if ($size >= 1 || $size == null) {
             $this->setOptionNumeric("pageSize", $size);
         }
     }
@@ -159,7 +159,7 @@ class Table extends Chart {
      *              be used.
      */
     public function setScrollLeftStartPosition($position) {
-        if ($position >= 0) {
+        if ($position >= 0 || $position == null) {
             $this->setOptionNumeric("scrollLeftStartPosition", $position);
         }
     }
@@ -224,7 +224,7 @@ class Table extends Chart {
      *              first page will be set.
      */
     public function setStartPage($page) {
-        if ($page >= 0) {
+        if ($page >= 0 || $page == null) {
             $this->setOptionNumeric("startPage", $page);
         }
     }

@@ -98,9 +98,12 @@ class DataTable {
      *
      * @param Column $col
      *              The new column definition.
+     * @return DataTable
+     *              This object.
      */
     public function addColumn(Column $col) {
         $this->cols[] = $col;
+        return $this;
     }
 
     /**
@@ -108,6 +111,8 @@ class DataTable {
      *
      * @param Row $row
      *              The new row.
+     * @return DataTable
+     *              This object.
      * @throws \InvalidArgumentException
      *              Thrown, if the row has more cells than column definitions
      *              have been added with the {@link addColumn()} method.
@@ -117,6 +122,7 @@ class DataTable {
             throw new \InvalidArgumentException("The DataTable has to have at least the same number of column definitions as cells per row.");
         }
         $this->rows[] = $row;
+        return $this;
     }
 
     /**
@@ -188,7 +194,7 @@ class DataTable {
      * @return string
      *              The JSON representation of this DataTable.
      */
-    public function toJsonObject() {
+    public function toJson() {
         $json = "{\n";
 
         // Build cols-array
@@ -200,7 +206,7 @@ class DataTable {
             } else {
                 $json .= ",\n";
             }
-            $json .= "    " . $col->toJsonString();
+            $json .= "    " . $col->toJson();
         }
         $json .= "],\n";
 
@@ -214,7 +220,7 @@ class DataTable {
             } else {
                 $json .= ",\n";
             }
-            $json .= "    " . $row->toJsonString($this->cols);
+            $json .= "    " . $row->toJson($this->cols);
         }
         $json .= "]\n";
         $json .= "}";

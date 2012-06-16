@@ -51,7 +51,7 @@ class AreaChart extends LineChart {
      *              fully opaque. If set to null, the default opacity will be used.
      */
     public function setAreaOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
+        if ($opacity >= 0.0 && $opacity <= 1.0 || $opacity == null) {
             $this->setOptionNumeric("areaOpacity", $opacity);
         }
     }

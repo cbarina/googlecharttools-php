@@ -143,7 +143,7 @@ abstract class Chart extends OptionStorage {
                 " * Prepares the \"" . $this->id . "\" chart for usage\n" .
                 " */\n" .
                 "function " . $this->id . "ChartPrepare() {\n" .
-                "  " . $this->id . "Data = new google.visualization.DataTable(" . $this->data->toJsonObject() . ");\n" .
+                "  " . $this->id . "Data = new google.visualization.DataTable(" . $this->data->toJson() . ");\n" .
                 "  " . $this->id . "Options = " . $this->encodeOptions() . ";\n" .
                 "  " . $this->id . "Chart = new google.visualization." .
                 $classname . "(document.getElementById(\"" . $this->id . "\"));\n" .

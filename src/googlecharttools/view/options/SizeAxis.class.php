@@ -82,7 +82,7 @@ class SizeAxis extends OptionStorage {
      *              The maximum size in pixels. If set to null, 30 px will be used.
      */
     public function setMaxSize($min) {
-        $this->setOptionNumeric("minSize", $min);
+        $this->setOptionNumeric("maxSize", $min);
     }
 
     /**
@@ -93,7 +93,7 @@ class SizeAxis extends OptionStorage {
      *              the size column will be used.
      */
     public function setMaxValue($min) {
-        $this->setOptionNumeric("minValue", $min);
+        $this->setOptionNumeric("maxValue", $min);
     }
 
 }

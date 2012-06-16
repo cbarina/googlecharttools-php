@@ -152,7 +152,7 @@ class Series extends OptionStorage {
      *              If set to null, the data points won't be displayed.
      */
     public function setPointSize($size) {
-        if ($size >= 0 || $width == null) {
+        if ($size >= 0 || $size == null) {
             $this->setOptionNumeric("pointSize", $size);
         }
     }
@@ -165,7 +165,7 @@ class Series extends OptionStorage {
      *                  fully opaque.
      */
     public function setAreaOpacity($opacity) {
-        if ($opacity >= 0.0 && $opacity <= 1.0) {
+        if ($opacity >= 0.0 && $opacity <= 1.0 || $opacity == null) {
             $this->setOptionNumeric("areaOpacity", $opacity);
         }
     }

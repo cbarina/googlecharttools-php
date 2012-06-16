@@ -131,6 +131,8 @@ class ChartManager {
     public function getHtmlHeaderCode($loadJsapi = true) {
         if ($loadJsapi) {
             $code = "<script type=\"text/javascript\" src=\"https://www.google.com/jsapi\"></script>\n";
+        } else {
+            $code = "";
         }
         $code .= "<script type=\"text/javascript\">\n";
         $code .= $this->getJavaScriptCode();
