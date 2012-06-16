@@ -43,6 +43,12 @@ abstract class Chart extends OptionStorage {
     /** @var DataTable */
     private $data;
 
+    /** @var string */
+    private $additionalCode = null;
+
+    /** @var string */
+    private $additionalPrepareCode = null;
+
     /**
      * Creates a new chart.
      *
@@ -112,6 +118,30 @@ abstract class Chart extends OptionStorage {
     }
 
     /**
+     * Adds additional code to the generated JavaScript code.
+     *
+     * The code will be added outside the prepare-function.
+     *
+     * @param string $code
+     *              Additonal JavaScript code.
+     */
+    public function addJavaScriptCode($code) {
+        $this->additionalCode = $code;
+    }
+
+    /**
+     * Adds additional code to the generated JavaScript prepare-function.
+     *
+     * The code will be added at the end of the function.
+     *
+     * @param string $code
+     *              Additonal JavaScript code.
+     */
+    public function addPrepareJavaScriptCode($code) {
+        $this->additionalPrepareCode = $code;
+    }
+
+    /**
      * Generates the JavaCode that will be used inside the script-element.
      *
      * The script-element is typically located inside the <head> HTML element.
@@ -138,6 +168,10 @@ abstract class Chart extends OptionStorage {
                 "var " . $this->id . "Options;\n" .
                 "var " . $this->id . "Chart;\n\n";
 
+        if ($this->additionalCode != null) {
+            $code .= $this->additionalCode . "\n\n";
+        }
+
         // Prepare function
         $code .= "/**\n" .
                 " * Prepares the \"" . $this->id . "\" chart for usage\n" .
@@ -146,9 +180,13 @@ abstract class Chart extends OptionStorage {
                 "  " . $this->id . "Data = new google.visualization.DataTable(" . $this->data->toJson() . ");\n" .
                 "  " . $this->id . "Options = " . $this->encodeOptions() . ";\n" .
                 "  " . $this->id . "Chart = new google.visualization." .
-                $classname . "(document.getElementById(\"" . $this->id . "\"));\n" .
-                "}";
+                $classname . "(document.getElementById(\"" . $this->id . "\"));\n";
 
+        if ($this->additionalPrepareCode != null) {
+            $code .= "\n" . $this->additionalPrepareCode . "\n";
+        }
+
+        $code .= "}";
 
         return $code;
     }

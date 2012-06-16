@@ -42,6 +42,12 @@ class ChartManager {
     /** @var Chart[] */
     private $charts = array();
 
+    /** @var string */
+    private $additionalCodeBegin = null;
+
+    /** @var string */
+    private $additionalCodeEnd = null;
+
     /**
      * Adds another chart to the manager.
      *
@@ -55,6 +61,28 @@ class ChartManager {
      */
     public function addChart(Chart $chart) {
         $this->charts[$chart->getId()] = $chart;
+    }
+
+    /**
+     * Adds additional code at the beginning of the generated JavaScript
+     * onLoad-function.
+     *
+     * @param string $code
+     *              Additonal JavaScript code.
+     */
+    public function addOnLoadJavaScriptCodeBegin($code) {
+        $this->additionalCodeBegin = $code;
+    }
+
+    /**
+     * Adds additional code at the end of the generated JavaScript
+     * onLoad-function.
+     *
+     * @param string $code
+     *              Additonal JavaScript code.
+     */
+    public function addOnLoadJavaScriptCodeEnd($code) {
+        $this->additionalCodeEnd = $code;
     }
 
     /**
@@ -76,7 +104,14 @@ class ChartManager {
      */
     public function getJavaScriptCode() {
         $packages = array();
-        $chartsOnLoadCode = "";
+
+        // Add additional code at the beginning of the onLoad-function
+        if ($this->additionalCodeBegin != null) {
+            $chartsOnLoadCode = $this->additionalCodeBegin . "\n\n";
+        } else {
+            $chartsOnLoadCode = "";
+        }
+
         $chartsPrepareCode = "";
 
         foreach ($this->charts as $chart) {
@@ -95,21 +130,25 @@ class ChartManager {
             // Code for the chart's preparation function
             // -----------------------------------------
             $chartsPrepareCode .= $chart->getJavaScriptCode() . "\n\n";
+        }
 
+        // Add additional code at the end of the onLoad-function
+        if ($this->additionalCodeEnd != null) {
+            $chartsOnLoadCode .= "\n" . $this->additionalCodeEnd . "\n";
         }
 
         // Build code
         return "google.load(\"visualization\", \"1\", {packages:[" . implode(",", $packages) . "]});\n" .
-               "google.setOnLoadCallback(chartsOnLoad);\n\n" .
-               "/**\n" .
-               " * Callback function used to prepare and automatically draw the charts\n" .
-               " */\n" .
-               "function chartsOnLoad() {\n" .
-               $chartsOnLoadCode .
-               "}\n\n" .
-               "// Chart preparation code\n" .
-               "// ----------------------\n\n" .
-               $chartsPrepareCode;
+                "google.setOnLoadCallback(chartsOnLoad);\n\n" .
+                "/**\n" .
+                " * Callback function used to prepare and automatically draw the charts\n" .
+                " */\n" .
+                "function chartsOnLoad() {\n" .
+                $chartsOnLoadCode .
+                "}\n\n" .
+                "// Chart preparation code\n" .
+                "// ----------------------\n\n" .
+                $chartsPrepareCode;
     }
 
     /**
