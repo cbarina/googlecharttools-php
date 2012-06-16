@@ -31,8 +31,8 @@ namespace googlecharttools\view;
  *
  * <b>Data format:</b><br />
  * The bar chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one bar.
+ * The first column is used for the x-axis labels and values. Each column that
+ * follows will be seen as y-values for one bar.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/barchart}
  * for examples and detailed background information on the required data format.
@@ -55,11 +55,12 @@ class BarChart extends DiscreteChart {
     /**
      * Sets the properties of more than one horzontal axis.
      *
-     * The specified array index must be mapped to the same number as set
-     * via {@link Series::setTargetAxisIndex()}.
+     * The specified array index must be mapped to the same number as set in
+     * the array given to {@link Series::setTargetAxisIndex()}.
      *
      * @param Axis[] $axes
-     *              A property for each axis.
+     *              A property for each axis. If set to null, the default properties
+     *              will be used.
      */
     public function setHAxes($axes) {
         $this->setOptionArray("hAxes", $axes);

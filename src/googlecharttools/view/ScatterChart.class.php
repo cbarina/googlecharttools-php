@@ -30,7 +30,7 @@ namespace googlecharttools\view;
  * Creates a scatter chart.
  *
  * <b>Data format:</b><br />
- * The line chart requires a {@link DataTable} with at least two columns.
+ * The scatter chart requires a {@link DataTable} with at least two columns.
  * The first column is used for the x-axis labels and values. Each column that
  * follows will be seen as y-values for one data set.
  *
@@ -49,7 +49,7 @@ class ScatterChart extends ContinuousChart {
      *
      * @param string $type
      *              The series' curve type. Must be one of the <i>CURVE_...</i>
-     *              constants. If set to null, the default type will be used.
+     *              constants or null. If set to null, the default type will be used.
      * @throws \InvalidArgumentException
      *              Thrown, if the given type is invalid. That is, if a value
      *              other than one of the constants is used.

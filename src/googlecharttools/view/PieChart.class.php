@@ -77,7 +77,7 @@ class PieChart extends Corechart {
      * @param Slice[] $series
      *              An array where each element defines a single slice.
      *              Either the array's entries are added in the same order
-     *              as the chart's slices (the {@link Row}) or the corresponding
+     *              as the chart's slices (the {@link Row}s) or the corresponding
      *              slice is set as the array's key (a numeric string).
      */
     public function setSlices($slices) {
@@ -102,7 +102,7 @@ class PieChart extends Corechart {
      *
      * @param string $position
      *              The value that will be displayed. Must be one of the <i>TEXT_...</i>
-     *              constants. If set to null, the percentage value will be displayed.
+     *              constants or null. If set to null, the percentage value will be displayed.
      * @throws \InvalidArgumentException
      *              Thrown, if the given text is invalid. That is, if a value
      *              other than one of the constants is used.

@@ -30,10 +30,10 @@ namespace googlecharttools\view;
  * The ChartManager manages all charts that will be displayed on the page.
  *
  * The ChartManager is responsible for the generation of the correct header-code
- * that has to been inserte into the page's <head> element. The purpose
+ * that has to be inserte into the page's <head> element. The purpose
  * of this code is to contact the Google server to fetch all required, external
  * JavaScript code used to render the charts. It also contains code, that will
- * assign the data and options to the charts and to create the chart itselfs.
+ * assign the data and options to the charts and to create the chart themselfs.
  *
  * @package view
  */
@@ -45,34 +45,34 @@ class ChartManager {
     /**
      * Adds another chart to the manager.
      *
-     * All charts that should be shown on the page have to be added to the manager.
-     * Please make sure, that all chart have their own ID. If a chart having the
-     * same ID as a chart that has been added before is added, the "older" chart will be
+     * All charts that should be displayed on the page have to be added to the manager.
+     * Please make sure, that all chart have their own, unique ID. If a chart is added
+     * having the same ID as a chart that has been added before, the "older" chart will be
      * overwritten.
      *
      * @param Chart $chart
-     *              Chart, that will be displayed on the page
+     *              Chart, that will be displayed on the page.
      */
     public function addChart(Chart $chart) {
         $this->charts[$chart->getId()] = $chart;
     }
 
     /**
-     * Genarates the JavaScript code that will be prepare all charts.
+     * Genarates the JavaScript code that will prepare all charts.
      *
-     * This code will generate a preparation JavaScript-function for all chart
-     * that have been added. This functions will assign the chart's data, options and the
-     * charts itselve to a global variable.
-     * The code generated code will also contain the required code to load the
-     * packages from Google's server and a callback method that will prepare and
-     * render all charts automatically as soon as all packages have been loaded.
+     * This method will generate a preparation JavaScript-function for all charts
+     * that have been added. This functions assign the chart's data, options and the
+     * charts themselve to a global variable.
+     * The generated code doesn't contain the required code to load the
+     * packages from Google's server but a callback function that prepares and
+     * displayes all charts automatically as soon as all packages have been loaded.
      *
      * @return string
-     *              The generated JavaScript code
+     *              The generated JavaScript code.
      * @throws CodeGenerationException
      *              Thrown, if the JavaScript code coudn't be generated, because
      *              no data ({@link Chart::setData()}) has been assigned to at
-     *              least one chart
+     *              least one chart.
      */
     public function getJavaScriptCode() {
         $packages = array();
@@ -118,15 +118,15 @@ class ChartManager {
      * The generated code is encapsulated in a <script> element.
      *
      * @param boolean $loadJsapi
-     *                  If set to true, a <script> element that loads Google's
-     *                  JSAPI will be included in the first code-line, too.
+     *              If set to true, a <script> element that loads Google's
+     *              JSAPI will be included in the first code-line, too.
      * @return string
-     *                  The generated HTML-/JavaScript code. This can be directly
-     *                  included in the HTML-page's <head> element.
+     *              The generated HTML-/JavaScript code. This can be directly
+     *              included in the HTML-page's <head> element.
      * @throws CodeGenerationException
      *              Thrown, if the JavaScript code coudn't be generated, because
      *              no data ({@link Chart::setData()}) has been assigned to at
-     *              least one chart
+     *              least one chart.
      */
     public function getHtmlHeaderCode($loadJsapi = true) {
         if ($loadJsapi) {

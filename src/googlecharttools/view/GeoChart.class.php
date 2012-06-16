@@ -87,7 +87,8 @@ class GeoChart extends Chart {
      * Sets the mapping between the regions/markers and their color specified in the color column.
      *
      * @param ColorAxis $axis
-     *              The color mapping.
+     *              The color mapping. If set to null, no color axis will be
+     *              displyed.
      */
     public function setColorAxis(ColorAxis $axis) {
         $this->setOption("colorAxis", $axis);
@@ -161,7 +162,7 @@ class GeoChart extends Chart {
      *
      * @param string $region
      *              The region that will be displyed. See the chart's
-     *              documentation for the parameter "region" at
+     *              documentation about the parameter "region" at
      *              {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/geochart}
      *              for valid values. If set to null, "world" will be used.
      */
@@ -200,6 +201,8 @@ class GeoChart extends Chart {
      *              The maps resolution. Must be one of the <i>RESOLUTION...</i>
      *              constants or null. If set to null, "countries" will be used.
      * @throws \InvalidArgumentException
+     *              Thrown, if the given resolution is invalid. That is, if a value
+     *              other than one of the constants is used.
      */
     public function setResolution($resolution) {
         if ($resolution != self::RESOLUTION_COUNTRIES && $resolution != self::RESOLUTION_METROS &&
@@ -213,7 +216,8 @@ class GeoChart extends Chart {
      * Sets the mapping between regions/markers and their size specified in the size column.
      *
      * @param SizeAxis $axis
-     *              The size mapping.
+     *              The size mapping. If set to null, the mapping is caluclated
+     *              automatically.
      */
     public function setSizeAxis(SizeAxis $axis) {
         $this->setOption("colorAxis", $axis);

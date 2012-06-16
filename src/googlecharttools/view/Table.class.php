@@ -63,6 +63,7 @@ class Table extends Chart {
     public function getPackage() {
         return "table";
     }
+
     /**
      * Sets if HTML in cells should be rendered.
      *
@@ -75,7 +76,7 @@ class Table extends Chart {
     }
 
     /**
-     * Sets if the row's color should alternated.
+     * Sets if the row's color should be alternating.
      *
      * @param boolean $alternating
      *              If set to true or null, the color will be alternating.
@@ -99,7 +100,8 @@ class Table extends Chart {
      * Sets the table's first row that will be displayed.
      *
      * @param int $number
-     *              The first row. If set to null, the first row will be used.
+     *              The first row. If set to null, the first row in the {@link DataTable}
+     *              will be used.
      */
     public function setFirstRowNumber($number) {
         $this->setOptionNumeric("firstRowNumber", $number);
@@ -138,7 +140,7 @@ class Table extends Chart {
     /**
      * Sets if the columns order should be inverted.
      *
-     * That is, the column in the table will be in inverse order.
+     * That is, the columns in the table will be in inverse order.
      *
      * @param boolean $rtl
      *              If set to true, the order is inverted.
@@ -166,7 +168,7 @@ class Table extends Chart {
      * Set if the row's number should be displayed in a seperate column.
      *
      * @param boolean $show
-     *              If set to true, the number will be showed.
+     *              If set to true, the numbers will be showed.
      *              If set to false or null, no numbers are visible.
      */
     public function setShowRowNumber($show) {
@@ -180,7 +182,7 @@ class Table extends Chart {
      *              The sorting mode. Must be one of the <i>MODE_...</i>
      *              constants or null.
      * @throws \InvalidArgumentException
-     *              Thrown, if the given page mode is invalid. That is, if a value
+     *              Thrown, if the given sorting mode is invalid. That is, if a value
      *              other than one of the constants is used.
      */
     public function setSort($sort) {
@@ -215,7 +217,7 @@ class Table extends Chart {
     /**
      * Sets the first page that will be set initially.
      *
-     * This works only if {@link setPage} is set to {@link MODE_ENABLE} or {@link MODE_EVENT}.
+     * This works only if {@link setPage()} is set to {@link MODE_ENABLE} or {@link MODE_EVENT}.
      *
      * @param int $page
      *              The page that will be set initially. If set to null, the

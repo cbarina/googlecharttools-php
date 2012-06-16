@@ -34,7 +34,7 @@ use googlecharttools\view\options\TextStyle;
 use googlecharttools\view\options\Tooltip;
 
 /**
- * Abstract base class for all charts supported by the Google Chart Tools.
+ * Abstract base class for all charts located in the "corechart" package.
  *
  * @package view
  */
@@ -56,7 +56,7 @@ abstract class Corechart extends Chart {
     }
 
     /**
-     * Sets the chart's position and size relative to it's border
+     * Sets the chart's position and size relative to it's border.
      *
      * @param ChartArea $area
      *              Position and size. If set to null, the default
@@ -69,7 +69,7 @@ abstract class Corechart extends Chart {
     /**
      * Sets the chart element's color.
      *
-     * These colors will be assigned to the chart's elements
+     * These colors will be assigned to the chart's elements.
      *
      * @param string[] $colors
      *              An array where each value represents a color for a
@@ -88,7 +88,7 @@ abstract class Corechart extends Chart {
      * as no other size has been set for the sub text-element.
      *
      * @param int $size
-     *              Font size in pixels. If set to null, the default size will be used
+     *              Font size in pixels. If set to null, the default size will be used.
      */
     public function setFontSize($size) {
         $this->setOptionNumeric("fontSize", $size);
@@ -98,7 +98,7 @@ abstract class Corechart extends Chart {
      * Sets the font name.
      *
      * This font will be used as for all text-elements in the chart, as long
-     * as no other font name has been set for the sub text-element
+     * as no other font name has been set for the sub text-element.
      *
      * @param string $name
      *              Font name. If set to null, the default font will be used.
@@ -123,6 +123,8 @@ abstract class Corechart extends Chart {
      *
      * @param boolean $reverse
      *              If set to true, the data will be read in reverse.
+     *              If set to false or null, it will be read in the order it's
+     *              added to the {@link DataTable}.
      */
     public function setReverseCategories($reverse) {
         $this->setOptionBoolean("reverseCategories", $reverse);
@@ -134,8 +136,8 @@ abstract class Corechart extends Chart {
      * The title will be displayed above the graph.
      *
      * @param string $title
-     *              The chart's title. If set to null, the title will
-     *              be removed
+     *              The chart's title. If set to null, no title will
+     *              be displayed.
      */
     public function setTitle($title) {
         $this->setOption("title", $title);

@@ -131,7 +131,7 @@ class Gauge extends Chart {
      *              "2" will be used.
      */
     public function setMinorTicks($ticks) {
-        if ($ticks >= 0) {
+        if ($ticks >= 0 || $ticks == null) {
             $this->setOptionNumeric("minorTicks", $ticks);
         }
     }

@@ -31,8 +31,8 @@ namespace googlecharttools\view;
  *
  * <b>Data format:</b><br />
  * The line chart requires a {@link DataTable} with at least two columns.
- * The first column is used for the X-axis labels and values. Each column that
- * follows will be seen as Y-values for one line.
+ * The first column is used for the x-axis labels and values. Each column that
+ * follows will be seen as y-values for one line.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/linechart}
  * for examples and detailed background information on the required data format.
@@ -70,15 +70,16 @@ class LineChart extends ContinuousChart {
         }
         $this->setOption("focusTarget", $target);
     }
-    
+
     /**
      * Sets the properties of more than one vertical axis.
      *
-     * The specified array index must be mapped to the same number as set
-     * via {@link Series::setTargetAxisIndex()}.
+     * The specified array index must be mapped to the same number as set in
+     * the array given to {@link Series::setTargetAxisIndex()}.
      *
      * @param Axis[] $axes
-     *              A property for each axis.
+     *              A property for each axis. If set to null, the default properties
+     *              will be used.
      */
     public function setVAxes($axes) {
         $this->setOptionArray("vAxes", $axes);

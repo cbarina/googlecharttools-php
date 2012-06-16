@@ -32,7 +32,7 @@ namespace googlecharttools\view;
  * <b>Data format:</b><br />
  * The area chart requires a {@link DataTable} with at least two columns.
  * The first column is used for the x-axis labels and values. Each column that
- * follows will be seen as y-values for one line.
+ * follows will be seen as y-values for one line/area.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/areachart}
  * for examples and detailed background information on the required data format.

@@ -32,8 +32,8 @@ namespace googlecharttools\view;
  * <b>Data format:</b><br />
  * The tree map requires a {@link DataTable} with at least three columns.
  * The first column is used as the nodes ID and name. The second column sets the nodes
- * parent ID. The nodes size is defined through the third column.
- * The fourth column is optional and is used to calculate the nodes color.
+ * parent ID. The nodes' size is defined through the third column.
+ * The fourth column is optional and is used to calculate the nodes' color.
  *
  * See {@link https://google-developers.appspot.com/chart/interactive/docs/gallery/treemap}
  * for examples and detailed background information on the required data format.
@@ -98,7 +98,7 @@ class TreeMap extends Chart {
     }
 
     /**
-     * Sets the maxiumum number of node levels that will be displayed.
+     * Sets the maximum number of node levels that will be displayed.
      *
      * @param int $color
      *              Maximum number of levels. If set to null, "1" will be used.
@@ -238,7 +238,7 @@ class TreeMap extends Chart {
     }
 
     /**
-     * Sets if the color gradient scale will be displyed.
+     * Sets if the color gradient scale will be displayed.
      *
      * @param boolean $scale
      *              If set to true, the scale will be displayed.

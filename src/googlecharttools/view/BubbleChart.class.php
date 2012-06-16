@@ -51,7 +51,8 @@ class BubbleChart extends CartesianChart {
      * Sets the bubbles' appearance.
      *
      * @param Bubble $bubble
-     *              The appearance of the chart's bubbles
+     *              The appearance of the chart's bubbles. If set to null, the
+     *              default appearance will be used.
      */
     public function setBubble(Bubble $bubble) {
         $this->setOption("bubble", $bubble);
@@ -61,7 +62,7 @@ class BubbleChart extends CartesianChart {
      * Sets the mapping between bubbles and their color specified in the color column.
      *
      * @param ColorAxis $axis
-     *              The color mapping.
+     *              The color mapping. If set to null, no color axis will be displayed.
      */
     public function setColorAxis(ColorAxis $axis) {
         $this->setOption("colorAxis", $axis);
@@ -71,7 +72,8 @@ class BubbleChart extends CartesianChart {
      * Sets the mapping between bubbles and their size specified in the size column.
      *
      * @param SizeAxis $axis
-     *              The size mapping.
+     *              The size mapping. If set to null, the size will be calculatted
+     *              automatically.
      */
     public function setSizeAxis(SizeAxis $axis) {
         $this->setOption("colorAxis", $axis);
@@ -79,7 +81,7 @@ class BubbleChart extends CartesianChart {
 
     /**
      * Sets if the bubble should be sorted by size or by the value set in the
-     * {@link DataTable}
+     * {@link DataTable}.
      *
      * @param boolean $sort
      *              If set to true, the bubbles or sorted by their size.

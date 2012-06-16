@@ -46,11 +46,12 @@ class CandlestickChart extends DiscreteChart {
     /**
      * Sets the properties of more than one vertical axis.
      *
-     * The specified array index must be mapped to the same number as set
-     * via {@link Series::setTargetAxisIndex()}.
+     * The specified array index must be mapped to the same number as set in
+     * the array given to {@link Series::setTargetAxisIndex()}.
      *
      * @param Axis[] $axes
-     *              A property for each axis.
+     *              A property for each axis. If set to null, the default properties
+     *              will be used.
      */
     public function setVAxes($axes) {
         $this->setOptionArray("vAxes", $axes);

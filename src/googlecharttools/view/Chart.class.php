@@ -50,11 +50,11 @@ abstract class Chart extends OptionStorage {
      *              The chart's ID. As this will be used as part of the chart reference
      *              names in the generated JavaScript code, the IDs have to be unique.
      * @param DataTable $data
-     *              The data that will be visualized through this chart
+     *              The data that will be visualized through this chart.
      * @param int $width
-     *              The chart's widht (in pixel)
+     *              The chart's widht (in pixels).
      * @param int $height
-     *              The chart's height (in pixel)
+     *              The chart's height (in pixels).
      */
     public function __construct($id, DataTable $data = null, $width = 700, $height = 300) {
         $this->id = $id;
@@ -64,7 +64,7 @@ abstract class Chart extends OptionStorage {
     }
 
     /**
-     * Gets the chart's ID
+     * Gets the chart's ID.
 
      * @return string
      *              The chart's ID.
@@ -81,7 +81,7 @@ abstract class Chart extends OptionStorage {
      * The data will be used by the API to draw the chart.
      *
      * @param DataTable $data
-     *              Data used for this chart
+     *              Data used for this chart.
      */
     public function setData(DataTable $data) {
         $this->data = $data;
@@ -91,23 +91,23 @@ abstract class Chart extends OptionStorage {
      * Sets the chart's width used when the chart is displayed.
      *
      * @param int $width
-     *              Positive humber that represents the chart's width in pixel
+     *              Positive humber that represents the chart's width in pixels.
      */
     public function setWidth($width) {
-        if (is_numeric($width) && $width > 0) {
-            $this->setOption("width", $width);
+        if ($width > 0) {
+            $this->setOptionNumeric("width", $width);
         }
     }
 
     /**
-     * Sets the chart's height used when the chart is displayed
+     * Sets the chart's height used when the chart is displayed.
      *
      * @param int $height
-     *              Positive humber that represents the chart's height in pixel
+     *              Positive humber that represents the chart's height in pixels.
      */
     public function setHeight($height) {
-        if (is_numeric($height) && $height > 0) {
-            $this->setOption("height", $height);
+        if ($height > 0) {
+            $this->setOptionNumeric("height", $height);
         }
     }
 
@@ -119,13 +119,13 @@ abstract class Chart extends OptionStorage {
      * chart's data, options and chart itself. There is typically no need to call
      * this method manually. Instead, this method is called for every chart that
      * has been added to the {@link ChartManager} when
-     * {@link ChartManager::getJavaScriptCode()} is called
+     * {@link ChartManager::getJavaScriptCode()} is called.
      *
      * @return string
-     *              The generated JavaScript code
+     *              The generated JavaScript code.
      * @throws CodeGenerationException
      *              Thrown, if the JavaScript code coudn't be generated, because
-     *              no data ({@link setData()}) has been assigned to the chart
+     *              no data ({@link setData()}) has been assigned to the chart.
      */
     public function getJavaScriptCode() {
         if ($this->data == null) {
@@ -157,7 +157,7 @@ abstract class Chart extends OptionStorage {
      * Gets the HTML <div> container in which the chart will be displayed.
      *
      * @return string
-     *              The HTML container
+     *              The HTML container.
      */
     public function getHtmlContainer() {
         return "<div id=\"" . $this->id . "\" style=\"width:" . $this->getOption("width") .

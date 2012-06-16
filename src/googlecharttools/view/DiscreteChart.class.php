@@ -29,12 +29,13 @@ namespace googlecharttools\view;
 use googlecharttools\view\options\Animation;
 
 /**
- * A DiscreteChart is used as base for all charts whose x-axis represents discrete values.
+ * A DiscreteChart is used as abstract base class for all charts whose x-axis
+ * represents discrete values.
  *
  * @package view
  */
 abstract class DiscreteChart extends CartesianChart {
-    
+
     /**
      * Focus is given to a single data point (On cell in the {@link DataTable}).
      */

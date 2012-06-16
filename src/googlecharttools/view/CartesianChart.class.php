@@ -38,10 +38,10 @@ use googlecharttools\view\options\Axis;
  * @package view
  */
 abstract class CartesianChart extends Corechart {
+
     /**
      * The axis title will be drawn inside the chart area.
      */
-
     const AXIS_TITLE_IN = "in";
 
     /**
@@ -108,9 +108,8 @@ abstract class CartesianChart extends Corechart {
      * Sets if the chart will react on user actions and throws events.
      *
      * @param boolean $interactivity
-     *              If set to true, the chart will react on user actions and
-     *              throw events. If set to null, the chart will behave is set
-     *              to true.
+     *              If set to true or null, the chart will react on user actions and
+     *              throw events.
      */
     public function setEnableInteractivity($interactivity) {
         $this->setOptionBoolean("enableInteractivity", $interactivity);
@@ -120,7 +119,8 @@ abstract class CartesianChart extends Corechart {
      * Sets the appearance of the horizontal axis.
      *
      * @param Axis $axis
-     *              The axis definition.
+     *              The axis definition. If set to null, the default appearance
+     *              will be used.
      */
     public function setHAxis(Axis $axis) {
         $this->setOption("hAxis", $axis);
@@ -145,7 +145,7 @@ abstract class CartesianChart extends Corechart {
      * A theme is a set of predefined options.
      *
      * @param string $theme
-     *              The theme. Must be on of the <i>THEME_...</i> constants.
+     *              The theme. Must be on of the <i>THEME_...</i> constants or null.
      * @throws \InvalidArgumentException
      *              Thrown, if the given theme is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -162,7 +162,7 @@ abstract class CartesianChart extends Corechart {
      *
      * @param string $position
      *              The title's position. Must be one of the <i>AXIS_TITLE_...</i>
-     *              constants.
+     *              constants or null.
      * @throws \InvalidArgumentException
      *              Thrown, if the given position is invalid. That is, if a value
      *              other than one of the constants is used.
@@ -179,7 +179,8 @@ abstract class CartesianChart extends Corechart {
      * Sets the appearance of the vertical axis.
      *
      * @param Axis $axis
-     *              The axis definition.
+     *              The axis definition. If set to null, the default appearance
+     *              will be used.
      */
     public function setVAxis(Axis $axis) {
         $this->setOption("vAxis", $axis);

@@ -31,7 +31,7 @@ namespace googlecharttools;
  * by the new-statement.
  *
  * The class' name is used as file name, with the extension
- * ".class.php" added, whereas the namespace is used as the file's path.
+ * ".class.php" added, whereas the namespace is used as the file's directoy-path.
  *
  * @package root
  */
@@ -40,18 +40,19 @@ class ClassLoader {
     private static $baseDir = __DIR__;
 
     /**
-     * Registers the class loader
+     * Registers the class loader.
      */
     public static function register() {
         spl_autoload_register(__CLASS__ . "::load");
     }
 
     /**
-     * Loads a class file
+     * Loads a class file.
+     *
      * @param string $class
-     *                  The class' name
+     *              The class' name.
      * @return boolean
-     *                  True, if file was loaded successfully
+     *              True, if file was loaded successfully.
      */
     public static function load($class) {
 

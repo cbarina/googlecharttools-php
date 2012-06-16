@@ -29,7 +29,8 @@ namespace googlecharttools\view;
 use googlecharttools\view\options\Animation;
 
 /**
- * A ContinuousChart is used as base for all charts whose x-axis represents continues values.
+ * A ContinuousChart is used as abstract base class for all charts whose x-axis
+ * represents continues values.
  *
  * @package view
  */
@@ -42,7 +43,8 @@ abstract class ContinuousChart extends CartesianChart {
      *              The data line's width in pixels. Must be greater or equal than "0".
      *              When set to "0", the lines will be invisible and only the
      *              data point will be displayed.
-     *              If set to null, the default width (2 pixels) will be used.
+     *              If set to null, the default width will be used, which depents on
+     *              the chart type.
      */
     public function setLineWidth($width) {
         if ($width >= 0) {
@@ -56,7 +58,8 @@ abstract class ContinuousChart extends CartesianChart {
      * @param int $size
      *              The data point's size in pixel. Must be greater or equal than "0".
      *              When set to "0", the data points will be invisible.
-     *              If set to null, the data points won't be displayed.
+     *              If set to null, the default size will be used, which depents on
+     *              the chart type
      */
     public function setPointSize($size) {
         if ($size >= 0) {
