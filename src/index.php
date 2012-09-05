@@ -60,7 +60,6 @@ error_reporting(E_ALL);
 require_once("./googlecharttools/ClassLoader.class.php");
 
 
-
 // Prepare data
 // ------------
 // Used for area, bar and column charts
